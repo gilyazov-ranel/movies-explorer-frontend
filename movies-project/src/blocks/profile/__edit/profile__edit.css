@@ -1,0 +1,30 @@
+.profile__edit {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-top: 206px;
+    text-align: center;
+    border: 0;
+    background: rgba(32, 32, 32, 1);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: normal;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+.profile__edit:hover {
+    opacity: 0.5;
+}
+
+@media (max-width: 900px) {
+    .profile__edit {
+        margin-top: 197px;
+    }
+}
+
+@media (max-width: 450px) {
+    .profile__edit {
+        margin-top: 365px;
+    }
+}

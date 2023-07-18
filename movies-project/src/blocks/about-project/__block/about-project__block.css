@@ -1,0 +1,19 @@
+.about-project__block {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 40px;
+}
+
+@media (max-width: 900px) {
+    .about-project__block {
+        column-gap: 30px;
+    }
+}
+
+@media (max-width: 700px) {
+    .about-project__block {
+        justify-content: center;
+    }
+}

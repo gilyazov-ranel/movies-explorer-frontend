@@ -1,0 +1,15 @@
+.burger-menu__nav {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.burger-menu__nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.burger-menu__nav li {
+    margin-top: 28px;
+}

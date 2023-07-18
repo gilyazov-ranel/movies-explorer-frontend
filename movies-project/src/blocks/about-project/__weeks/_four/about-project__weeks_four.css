@@ -1,0 +1,29 @@
+.about-project__weeks_four {
+    margin: 0;
+    padding: 0;
+    background: rgba(48, 48, 48, 1);
+    width: 912px;
+    height: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (max-width: 1210px) {
+    .about-project__weeks_four {
+        width: 71vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .about-project__weeks_four  {
+        max-width: 528px;
+    }
+}
+
+@media (max-width: 450px) {
+    .about-project__weeks_four  {
+        max-width: 184px;
+        font-size: 11px;
+    }
+}

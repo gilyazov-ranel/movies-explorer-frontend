@@ -1,0 +1,29 @@
+.search {
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1140px;
+    margin-top: 97px;
+    padding-bottom: 84px;
+    border-bottom: 1px solid rgba(170, 170, 170, 1);
+}
+
+@media (max-width: 900px) {
+    .search {
+        max-width: 708px;
+        padding-bottom: 57px;
+        margin-top: 73px;
+    }
+}
+
+
+@media (max-width: 450px) {
+    .search {
+        max-width: 300px;
+        padding-bottom: 44px;
+        margin-top: 75px;
+    }
+}

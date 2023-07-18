@@ -1,0 +1,36 @@
+.about-project__weeks_one {
+    margin: 0;
+    padding: 0;
+    background: rgba(61, 220, 132, 1);
+    color: rgba(0, 0, 0, 1);
+    width: 228px;
+    height: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (max-width: 1210px) {
+    .about-project__weeks_one {
+        width: 18vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .about-project__weeks_one  {
+        width: 140px;
+    }
+}
+
+@media (max-width: 700px) {
+    .about-project__weeks_one  {
+        width: calc(100vw - 75vw);
+    }
+}
+
+@media (max-width: 450px) {
+    .about-project__weeks_one  {
+        width: 100px;
+        font-size: 11px;
+    }
+}

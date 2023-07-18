@@ -1,0 +1,17 @@
+.burger-menu__title {
+    margin: 0;
+    padding: 0;
+    min-width: 340px;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+    align-self: center;
+    cursor: pointer;
+}
+
+.burger-menu__title:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,20 @@
+.portfolio__icon {
+    margin: 0;
+    padding: 0;
+    background: url(../../../images/icon_link.svg) no-repeat center center;
+    width: 29px;
+    height: 52px;
+}
+
+@media (max-width: 768px) {
+    .portfolio__icon {
+        width: 27px;
+    }
+}
+
+@media (max-width: 450px) {
+    .portfolio__icon {
+        width: 18px;
+        height: 28px;
+    }
+}

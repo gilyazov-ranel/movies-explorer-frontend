@@ -1,0 +1,18 @@
+.about-me {
+    margin: 0 auto;
+    padding: 0;
+    height: 100%;
+    max-width: 1140px;
+}
+
+@media (max-width: 900px) {
+    .about-me {
+        max-width: 668px;
+    }
+}
+
+@media (max-width: 450px) {
+    .about-me {
+        max-width: 292px;
+    }
+}

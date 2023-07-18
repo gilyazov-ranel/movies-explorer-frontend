@@ -1,0 +1,26 @@
+.header__landing {
+    margin: 0;
+    padding: 0;
+    width: 76px;
+    border-radius: 3px;
+    background: #3DDC84;
+    text-decoration: none;
+    text-align: center;
+    color: rgba(0, 0, 0, 1);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.header__landing:hover {
+    opacity: 0.5;
+}
+
+@media (max-width: 450px) {
+    .header__landing{
+        font-size: 10px;
+        width: 54px;
+    }
+}

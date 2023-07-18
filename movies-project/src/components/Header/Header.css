@@ -1,0 +1,19 @@
+@import url(../../blocks/header/header.css);
+@import url(../../blocks/header/__logo/header__logo.css);
+@import url(../../blocks/header/__landing/header__landing.css);
+@import url(../../blocks/header/__button/header__button.css);
+@import url(../../blocks/header/__movies/header__movies.css);
+@import url(../../blocks/header/__movie/header__movie.css);
+@import url(../../blocks/header/__account/header__account.css);
+@import url(../../blocks/header/__profile/header__profile.css);
+@import url(../../blocks/header/__block/header__block.css);
+@import url(../../blocks/header/__burger/header__burger.css);
+@import url(../../blocks/open/open.css);
+@import url(../../blocks/burger-menu/burger-menu.css);
+@import url(../../blocks/burger-menu/__account/burger-menu__account.css);
+@import url(../../blocks/burger-menu/__block/burger-menu__block.css);
+@import url(../../blocks/burger-menu/__nav/burger-menu__nav.css);
+@import url(../../blocks/burger-menu/__profile/burger-menu__profile.css);
+@import url(../../blocks/burger-menu/__close/burger-menu__close.css);
+@import url(../../blocks/burger-menu/__title/burger-menu__title.css);
+

@@ -1,0 +1,12 @@
+.portfolio__block {
+    margin: 0;
+    padding: 22px 0 19px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 450px) {
+    .portfolio__block {
+        padding-top: 20px;
+    }
+}

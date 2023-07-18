@@ -1,0 +1,16 @@
+.header__movies {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    min-width: 212px;
+    min-height: 18px;
+    margin-top: 28px;
+    padding-left: 60px;
+}
+
+@media (max-width: 900px) {
+    .header__movies {
+        display: none;
+    }
+}

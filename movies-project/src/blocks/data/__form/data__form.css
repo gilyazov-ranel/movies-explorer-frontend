@@ -1,0 +1,13 @@
+.data__form {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media (max-width: 450px) {
+    .data__form {
+        width: 260px;
+        margin-top: 60px;
+    }
+}

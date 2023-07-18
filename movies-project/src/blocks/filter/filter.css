@@ -1,0 +1,11 @@
+.filter {
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+}
+
+@media (max-width: 900px) {
+    .filter {
+        margin-top: 43px;
+    }
+}

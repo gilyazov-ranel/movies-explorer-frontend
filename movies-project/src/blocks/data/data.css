@@ -1,0 +1,13 @@
+.data {
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 396px;
+}
+
+@media (max-width: 450px) {
+    .data {
+        width: 320px;
+    }
+}

@@ -1,0 +1,22 @@
+.profile__name {
+    margin: 92px 0 108px;
+    padding: 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+@media (max-width: 900px) {
+    .profile__name {
+        margin-top: 250px;
+        margin-bottom: 80px;
+    }
+}
+
+@media (max-width: 450px) {
+    .profile__name {
+        margin-top: 82px;
+        margin-bottom: 65px;
+    }
+}

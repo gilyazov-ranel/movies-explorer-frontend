@@ -1,0 +1,15 @@
+.movie__image {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 203px;
+    grid-column: span 2;
+    grid-row: span 1;
+    object-fit: cover;
+}
+
+@media (max-width: 450px) {
+    .movie__image {
+        height: 168px;
+    }
+}

@@ -1,0 +1,21 @@
+.data__logo {
+    margin: 0;
+    padding: 0;
+    background: url(../../../images/logo_header.svg) no-repeat center center;
+    width: 38px;
+    height: 38px;
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+
+.data__logo:hover {
+    opacity: 0.5;
+}
+
+@media (max-width: 450px) {
+    .data__logo {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 50px;
+    }
+}
