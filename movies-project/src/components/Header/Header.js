@@ -1,6 +1,5 @@
 import './Header.css';
-import { useState } from 'react';
-
+import { NavLink } from "react-router-dom";
 function Header({
     films,
     saveFilm,
@@ -9,33 +8,27 @@ function Header({
     buttonStyle,
     buttonProfile,
     pathToPage,
-    wayToEnter
+    wayToEnter,
+    isOpenBurgerMenu,
+    isCloseBurgerMenu,
+    isBurgerMenu
 }) {
 
-    const [isBurgerMenu, setBurgerMenu] = useState(false);
-
-    function handleOpenBurgerMenu() {
-            setBurgerMenu(true);
-    }
-    function handleCloseBurgerMenu() {
-        setBurgerMenu(false);
-    }
-
     return (
-        <header className="header">
-            <a href='/' className="header__logo"> </a>
-            <div className="header__movies">
-                <a href='/movies' className="header__movie">{films}</a>
-                <a href='/saved-movies' className="header__movie">{saveFilm}</a>
-            </div>
-            <div className={`burger-menu` + (isBurgerMenu ? ` open` : ' ')}>
-                <button className='burger-menu__close' onClick={handleCloseBurgerMenu}>
+        <header className='header'>
+            <a href='/' className='header__logo'> </a>
+            <nav className='header__nav'>
+                <a href='/movies' className='header__movie'>{films}</a>
+                <a href='/saved-movies' className='header__movie'>{saveFilm}</a>
+            </nav>
+            <div className={'burger-menu' + (isBurgerMenu ? ' open' : ' ')}>
+                <button type='button' className='burger-menu__close' onClick={isCloseBurgerMenu}>
                 </button>
                 <nav className='burger-menu__nav'>
                     <ul>
-                        <li ><a href='/' className='burger-menu__title'>Главная</a></li>
-                        <li ><a href='/movies' className='burger-menu__title'>Фильмы</a></li>
-                        <li ><a href='/saved-movies' className='burger-menu__title'>Сохранённые фильмы</a></li>
+                        <li ><NavLink to='/' className='burger-menu__title' >Главная</NavLink></li>
+                        <li ><NavLink to='/movies' className='burger-menu__title' onClick={isCloseBurgerMenu}>Фильмы</NavLink></li>
+                        <li ><NavLink to='/saved-movies' className='burger-menu__title' onClick={isCloseBurgerMenu}>Сохранённые фильмы</NavLink></li>
                     </ul>
                 </nav>
                 <div className='burger-menu__block'>
@@ -46,16 +39,16 @@ function Header({
                     </a>
                 </div>
             </div>
-            <div className={'header__block'}>
-                <a href={pathToPage} className={"header" + buttonProfile}>
+            <div className='header__block'>
+                <a href={pathToPage} className={'header' + buttonProfile}>
                     {buttonRegister}
                 </a>
-                <a href={wayToEnter} className={"header" + buttonStyle}>
+                <a href={wayToEnter} className={'header' + buttonStyle}>
                     {buttonLogin}
                 </a>
-                <div class={(buttonProfile === '__profile' && `header__burger`)
+                <div className={(buttonProfile === '__profile' ? 'header__burger' : '')
                 }
-                    onClick={handleOpenBurgerMenu} >
+                    onClick={isOpenBurgerMenu} >
                 </div>
             </div>
 

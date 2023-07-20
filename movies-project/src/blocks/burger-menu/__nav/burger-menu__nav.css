@@ -13,3 +13,9 @@
 .burger-menu__nav li {
     margin-top: 28px;
 }
+
+@media (max-width: 320px) {
+    .burger-menu__nav li {
+        margin-top: 26px;
+    }
+}

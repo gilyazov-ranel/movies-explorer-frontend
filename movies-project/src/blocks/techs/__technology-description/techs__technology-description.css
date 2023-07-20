@@ -1,21 +1,21 @@
-.techs__technology_description {
+.techs__technology-description {
     margin: 0;
     padding: 0;
     width: 90px;
     height: 100%;
     border-radius: 10px;
     background: rgba(48, 48, 48, 1);
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 14px;
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.56px;
-    justify-content: center;
-
 }
 
 @media (max-width: 900px) {
-    .techs__technology_description {
+    .techs__technology-description {
         width: 84px;
         font-size: 12px;
         letter-spacing: -0.48px;
@@ -23,7 +23,7 @@
 }
 
 @media (max-width: 450px) {
-    .techs__technology_description {
+    .techs__technology-description {
         height: 57px;
         margin-left: 0;
     }

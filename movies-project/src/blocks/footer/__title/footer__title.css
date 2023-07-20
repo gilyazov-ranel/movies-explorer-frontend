@@ -13,5 +13,7 @@
 @media (max-width: 450px) {
     .footer__title {
         font-size: 12px;
+        padding-bottom: 22px;
+
     }
 }

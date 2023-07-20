@@ -17,5 +17,6 @@
 @media (max-width: 450px) {
     .error__button {
         font-size: 12px;
+        margin-bottom: 30px;
     }
 }

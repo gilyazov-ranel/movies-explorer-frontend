@@ -1,8 +1,18 @@
 .portfolio__block {
     margin: 0;
-    padding: 22px 0 19px;
+    padding: 22px 0 20px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    flex-grow: 2;
+    list-style-type: none;
+}
+
+@media (max-width: 900px) {
+    .portfolio__block {
+        padding-bottom: 17px;
+        padding-top: 20px;
+    }
 }
 
 @media (max-width: 450px) {

@@ -9,9 +9,13 @@
     line-height: normal;
 }
 
+.footer__link:hover {
+    opacity: 0.699999988079071;
+}
+
 @media (max-width: 450px) {
     .footer__link {
-        margin-top: 12px;
+        margin-top: 20px;
         font-size: 12px;
         margin-left: 0;
     }

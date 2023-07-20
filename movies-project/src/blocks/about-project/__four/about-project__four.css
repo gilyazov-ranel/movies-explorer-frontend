@@ -1,4 +1,4 @@
-.about-project__weeks_four {
+.about-project__four {
     margin: 0;
     padding: 0;
     background: rgba(48, 48, 48, 1);
@@ -7,22 +7,25 @@
     font-size: 14px;
     font-weight: 400;
     line-height: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 1210px) {
-    .about-project__weeks_four {
+    .about-project__four {
         width: 71vw;
     }
 }
 
 @media (max-width: 900px) {
-    .about-project__weeks_four  {
+    .about-project__four {
         max-width: 528px;
     }
 }
 
 @media (max-width: 450px) {
-    .about-project__weeks_four  {
+    .about-project__four {
         max-width: 184px;
         font-size: 11px;
     }

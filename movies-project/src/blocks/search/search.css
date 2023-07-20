@@ -11,6 +11,13 @@
     border-bottom: 1px solid rgba(170, 170, 170, 1);
 }
 
+@media (max-width: 1130px) {
+    .search {
+        justify-content: center;
+
+    }
+}
+
 @media (max-width: 900px) {
     .search {
         max-width: 708px;
@@ -18,7 +25,6 @@
         margin-top: 73px;
     }
 }
-
 
 @media (max-width: 450px) {
     .search {

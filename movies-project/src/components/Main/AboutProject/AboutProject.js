@@ -1,8 +1,7 @@
 import './AboutProject.css'
 function AboutProject() {
     return (
-        <div name='proect' className='about-project'>
-            <a name='proect' href='/'> </a>
+        <section id='proect' className='about-project'>
             <h2 className='about-project__title'>
                 О проекте
             </h2>
@@ -26,22 +25,22 @@ function AboutProject() {
 
 
                 <div className='about-project__weeks'>
-                    <p className='about-project__weeks about-project__weeks_one'>
+                    <p className='about-project__one'>
                         1 неделя
                     </p>
-                    <p className='about-project__weeks about-project__weeks_four'>
+                    <p className='about-project__four'>
                         4 недели
                     </p>
-                    <p className='about-project__weeks about-project__weeks_back'>
+                    <p className='about-project__back'>
                         Back-end
                     </p>
-                    <p className='about-project__weeks about-project__weeks_front'>
+                    <p className='about-project__front'>
                         Front-end
                     </p>
                 </div>
 
             </div>
-        </div>
+        </section>
     )
 
 }

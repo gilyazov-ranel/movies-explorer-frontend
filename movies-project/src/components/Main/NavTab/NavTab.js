@@ -1,7 +1,7 @@
 import './NavTab.css';
 function NavTab() {
     return (
-        <div className='navtab'>
+        <nav className='navtab'>
             <a href='#proect' className='navtab__button'>
                 О проекте
             </a>
@@ -11,7 +11,7 @@ function NavTab() {
             <a href='#student' className='navtab__button'>
                 Студент
             </a>
-        </div>
+        </nav>
     )
 }
 

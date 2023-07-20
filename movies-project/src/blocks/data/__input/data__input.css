@@ -13,6 +13,17 @@
     outline: none;
     cursor: text;
     padding-left: 15px;
+    margin-bottom: 12px;
+    margin-top: 10px;
+}
+
+.data__input:focus {
+    outline: 1px solid rgba(66, 133, 244, 1);
+    border-radius: 5px;
+}
+
+.data__input:nth-child(6) {
+    margin-bottom: 5px;
 }
 
 @media (max-width: 450px) {

@@ -10,13 +10,13 @@
     font-size: 14px;
     font-weight: 500;
     line-height: normal;
-    margin-top: 72px;
+    margin-top: 68px;
     margin-bottom: 16px;
     cursor: pointer;
 }
 
 .data__button:hover {
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 @media (max-width: 450px) {

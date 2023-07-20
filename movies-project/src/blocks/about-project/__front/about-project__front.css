@@ -1,24 +1,27 @@
-.about-project__weeks_back {
+.about-project__front {
     margin: 0;
     padding: 0;
     color: rgba(139, 139, 139, 1);
-    width: 228px;
+    width: 912px;
     height: 100%;
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;
     padding-top: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 1210px) {
-    .about-project__weeks_back {
-        width: 18vw;
+    .about-project__front {
+        width: 71vw;
     }
 }
 
 @media (max-width: 900px) {
-    .about-project__weeks_back {
-        width: 140px;
+    .about-project__front {
+        max-width: 528px;
         font-weight: 400;
         line-height: 17px;
         padding-top: 4px;
@@ -26,15 +29,9 @@
 }
 
 @media (max-width: 450px) {
-    .about-project__weeks_back {
-        width: 100px;
+    .about-project__front {
+        max-width: 184px;
         font-size: 11px;
         padding-top: 0;
-    }
-}
-
-@media (max-width: 700px) {
-    .about-project__weeks_back  {
-        width: calc(100vw - 75vw);
     }
 }

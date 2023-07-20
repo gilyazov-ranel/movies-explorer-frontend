@@ -8,3 +8,7 @@
 .checkbox input {
     display: none;
 }
+
+.checkbox:hover {
+    opacity: 0.699999988079071;
+}

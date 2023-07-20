@@ -5,7 +5,8 @@
 @import url(../../blocks/profile/__input/profile__input.css);
 @import url(../../blocks/profile/__exit/profile__exit.css);
 @import url(../../blocks/profile/__edit/profile__edit.css);
-
+@import url(../../blocks/opacity/opacity.css);
+@import url(../../blocks/profile/__save/profile__save.css);
 
 
 

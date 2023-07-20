@@ -3,13 +3,13 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList() {
     return (
-        <div className='movies'>
+        <section className='movies'>
             <div className='movies__save-card'>
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
+                <MoviesCard nameMovie='33 слова о дизайне'/>
+                <MoviesCard nameMovie='33 слова о дизайне'/>
+                <MoviesCard nameMovie='33 слова о дизайне'/>
             </div>
-        </div>
+        </section>
     )
 }
 

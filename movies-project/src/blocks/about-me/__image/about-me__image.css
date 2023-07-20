@@ -8,7 +8,6 @@
     justify-self: end;
 }
 
-
 @media (max-width: 900px) {
     .about-me__image {
         width: 255px;

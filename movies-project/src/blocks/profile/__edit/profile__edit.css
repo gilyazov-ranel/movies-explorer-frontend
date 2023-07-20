@@ -11,10 +11,11 @@
     line-height: normal;
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
+    text-decoration: none;
 }
 
 .profile__edit:hover {
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 @media (max-width: 900px) {

@@ -1,8 +1,7 @@
 import './Techs.css';
 function Techs() {
     return (
-        <div className='techs'>
-            <a name='techs' href='/'> </a>
+        <section id='techs' className='techs'>
             <h2 className='techs__name'>
                 Технологии
             </h2>
@@ -12,30 +11,30 @@ function Techs() {
             <p className='techs__subtitle'>
                 На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.
             </p>
-            <div className='techs__technology'>
-                <p className='techs__technology techs__technology_description'>
+            <ul className='techs__technology'>
+                <li className='techs__technology-description'>
                     HTML
-                </p>
-                <p className='techs__technology techs__technology_description'>
+                </li>
+                <li className='techs__technology-description'>
                     CSS
-                </p>
-                <p className='techs__technology techs__technology_description'>
+                </li>
+                <li className='techs__technology-description'>
                     JS
-                </p>
-                <p className='techs__technology techs__technology_description'>
+                </li>
+                <li className='techs__technology-description'>
                     React
-                </p>
-                <p className='techs__technology techs__technology_description'>
+                </li>
+                <li className='techs__technology-description'>
                     Git
-                </p>
-                <p className='techs__technology techs__technology_description'>
+                </li>
+                <li className='techs__technology-description'>
                     Express.js
-                </p>
-                <p className='techs__technology techs__technology_description'>
+                </li>
+                <li className='techs__technology-description'>
                     mongoDB
-                </p>
-            </div>
-        </div>
+                </li>
+            </ul>
+        </section>
     )
 }
 

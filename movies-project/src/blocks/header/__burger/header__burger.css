@@ -14,7 +14,7 @@
 }
 
 .header__burger:hover {
-    opacity: .8;
+    opacity: 0.699999988079071;
 }
 
 @media (max-width: 900px) {

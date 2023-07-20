@@ -2,31 +2,31 @@ import './Register.css';
 
 function Register() {
     return (
-        <div className='data'>
+        <main className='data'>
             <a href='/' className='data__logo'> </a>
-            <h2 className='data__welcome'>
+            <h1 className='data__welcome'>
                 Добро пожаловать!
-            </h2>
+            </h1>
             <form className='data__form'>
-                <p className='data__title'>
+                <label className='data__title'>
                     Имя
-                </p>
+                </label>
                 <input className='data__input' placeholder='Имя' type='text' required
 />
-                <p className='data__title' >
+                <label className='data__title' >
                     E-mail
-                </p>
+                </label>
                 <input className='data__input' placeholder='Email' type='email' required
 />
-                <p className='data__title'>
+                <label className='data__title'>
                     Пароль
-                </p>
+                </label>
                 <input className='data__input' placeholder='Пароль' type='password' required
 />
                 <span className='data__input-error'>
                     Что-то пошло не так...
                 </span>
-                <button className='data__button'>
+                <button type='submit' className='data__button'>
                     Зарегистрироваться
                 </button>
             </form>
@@ -37,7 +37,7 @@ function Register() {
                 </a>
             </p>
 
-        </div>
+        </main>
     )
 }
 export default Register;

@@ -1,5 +1,6 @@
 import '../../index.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import './App.css';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -12,6 +13,17 @@ import Footer from '../Footer/Footer';
 import Error from '../Error/Error';
 
 function App() {
+  const [isBurgerMenu, setBurgerMenu] = useState(false);
+  const navigate = useNavigate();
+
+  function handleOpenBurgerMenu() {
+    setBurgerMenu(true);
+  }
+
+  function handleCloseBurgerMenu() {
+    setBurgerMenu(false);
+  }
+
 
   return (
     <Routes>
@@ -25,7 +37,8 @@ function App() {
             pathToPage='/signup'
             wayToEnter='/signin'
           />
-          <Main />
+          <Main
+          />
           <Footer />
         </>
       } />
@@ -42,8 +55,13 @@ function App() {
             buttonStyle='__account'
             buttonProfile='__profile'
             pathToPage='/profile'
+            isOpenBurgerMenu={handleOpenBurgerMenu}
+            isCloseBurgerMenu={handleCloseBurgerMenu}
+            isBurgerMenu={isBurgerMenu}
           />
-          <Movies />
+          <Movies
+            isBurgerMenu={isBurgerMenu}
+          />
           <Footer />
         </>
       } />
@@ -56,8 +74,13 @@ function App() {
             buttonStyle='__account'
             buttonProfile='__profile'
             pathToPage='/profile'
+            isOpenBurgerMenu={handleOpenBurgerMenu}
+            isCloseBurgerMenu={handleCloseBurgerMenu}
+            isBurgerMenu={isBurgerMenu}
           />
-          <SavedMovies />
+          <SavedMovies
+            isBurgerMenu={isBurgerMenu}
+          />
           <Footer />
         </>} />
       <Route path='/profile' element={
@@ -68,14 +91,19 @@ function App() {
             saveFilm='Сохраненные фильмы'
             buttonStyle='__account'
             buttonProfile='__profile'
+            isOpenBurgerMenu={handleOpenBurgerMenu}
+            isCloseBurgerMenu={handleCloseBurgerMenu}
+            isBurgerMenu={isBurgerMenu}
           />
-          <Profile />
+          <Profile
+            isBurgerMenu={isBurgerMenu}
+          />
         </>
 
       } />
-    <Route path='/404' element={
-      <Error />
-    } />
+      <Route path='/404' element={
+        <Error navigate={navigate} />
+      } />
     </Routes>
   );
 }

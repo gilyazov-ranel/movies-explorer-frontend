@@ -5,8 +5,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
+    text-align: center;
     height: 36px;
-    max-lines: 100%;
 }
 
 @media (max-width: 900px) {
@@ -17,6 +17,6 @@
 
 @media (max-width: 450px) {
     .about-project__weeks {
-        margin-top: 62px;
+        margin-top: 60px;
     }
 }

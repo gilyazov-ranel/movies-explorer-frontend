@@ -1,4 +1,4 @@
-.about-project__weeks_one {
+.about-project__one {
     margin: 0;
     padding: 0;
     background: rgba(61, 220, 132, 1);
@@ -8,28 +8,31 @@
     font-size: 14px;
     font-weight: 400;
     line-height: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 1210px) {
-    .about-project__weeks_one {
+    .about-project__one {
         width: 18vw;
     }
 }
 
 @media (max-width: 900px) {
-    .about-project__weeks_one  {
+    .about-project__one  {
         width: 140px;
     }
 }
 
 @media (max-width: 700px) {
-    .about-project__weeks_one  {
+    .about-project__one  {
         width: calc(100vw - 75vw);
     }
 }
 
 @media (max-width: 450px) {
-    .about-project__weeks_one  {
+    .about-project__one  {
         width: 100px;
         font-size: 11px;
     }

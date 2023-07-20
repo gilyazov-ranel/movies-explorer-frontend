@@ -1,32 +1,64 @@
 import './Profile.css';
+import { useState } from 'react';
 
-function Profile() {
+function Profile({
+    isBurgerMenu
+}
+) {
+    const [isSaveProfile, setSaveProfile] = useState(true);
+
+    function handleSaveProfile() {
+        if (isSaveProfile) {
+            setSaveProfile(false)
+        } else {
+            setSaveProfile(true)
+        }
+    }
+
     return (
-        <div className='profile'>
-            <h2 className='profile__name'>
-                Привет, Виталий!
-            </h2>
+        <main className={'profile ' + (isBurgerMenu ? 'opacity' : '')}>
+            <h1 className='profile__name'>
+                Привет, Александр!
+            </h1>
             <form className='profile__form'>
 
-                <p className='profile__title'>
+                <label className='profile__title'>
                     Имя
-                </p>
-                <input className='profile__input' type='text' value='Виталий' required
-/>
-                <p className='profile__title'>
+                </label>
+                <input
+                    className='profile__input'
+                    type='text'
+                    defaultValue='Александр'
+                    required
+                    disabled={isSaveProfile}
+                    placeholder='Имя'
+                />
+                <label className='profile__title'>
                     E-mail
-                </p>
-                <input className='profile__input' type='email' value='pochta@yandex.ru' required
-/>
+                </label>
+                <input
+                    className='profile__input'
+                    type='email'
+                    defaultValue='spasibo_z@_podskazki.ru'
+                    required
+                    disabled={isSaveProfile}
+                    placeholder='E-mail'
+                />
+                {
+                    isSaveProfile ? <>
+                        <button type='button' className='profile__edit' onClick={handleSaveProfile} >
+                            Редактировать
+                        </button>
+                        <a className='profile__exit' href='/'>
+                            Выйти из аккаунта
+                        </a>
+                    </> : <button type='submit' className='profile__save' onClick={handleSaveProfile}>
+                        Сохранить
+                    </button>
 
-                <button className='profile__edit' >
-                    Редактировать
-                </button>
-                <button className='profile__exit'>
-                    Выйти из аккаунта
-                </button>
+                }
             </form>
-        </div>
+        </main>
 
     )
 }
