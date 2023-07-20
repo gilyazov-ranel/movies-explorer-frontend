@@ -1,0 +1,23 @@
+.promo {
+    margin: 40px auto 0;
+    padding: 0;
+    background: rgba(39, 39, 39, 1);
+    border-radius: 10px;
+    max-width: 1200px;
+    height: 493px;
+}
+
+@media (max-width: 900px) {
+    .promo {
+        max-width: 728px;
+        height: 834px;
+    }
+}
+
+@media (max-width: 450px) {
+    .promo {
+        max-width: 292px;
+        height: 586px;
+        margin-top: 33px;
+    }
+}

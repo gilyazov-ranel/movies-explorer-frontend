@@ -1,0 +1,26 @@
+.about-me__image {
+    margin: 0;
+    padding: 0;
+    width: 270px;
+    height: 327px;
+    border-radius: 10px;
+    grid-row: span 5;
+    justify-self: end;
+}
+
+@media (max-width: 900px) {
+    .about-me__image {
+        width: 255px;
+        height: 307px;
+    }
+}
+
+@media (max-width: 450px) {
+    .about-me__image {
+        width: 292px;
+        height: 352px;
+        grid-row: 1/1;
+        grid-column: 1/1;
+    }
+}
+

@@ -1,0 +1,8 @@
+.profile__form {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 410px;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: default;
+}

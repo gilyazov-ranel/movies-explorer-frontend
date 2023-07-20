@@ -1,0 +1,19 @@
+.movie__delete {
+    margin: 0;
+    padding: 0;
+    background: url(../../../images/icon_delete.svg) no-repeat center center;
+    border: none;
+    width: 30px;
+    height: 30px;
+    grid-row: span 2;
+    grid-column: auto;
+    cursor: pointer;
+    text-align: center;
+    justify-self: end;
+    margin-right: 14px;
+}
+
+.movie__delete:hover {
+    opacity: 0.699999988079071;
+}
+

@@ -1,0 +1,33 @@
+.about-me__subtitle {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(5, auto);
+    grid-auto-flow: column dense;
+    margin-top: 66px;
+    margin-bottom: 100px;
+}
+
+@media (max-width: 900px) {
+    .about-me__subtitle {
+        margin-bottom: 90px;
+    }
+}
+
+@media (max-width: 700px) {
+    .about-me__subtitle {
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 450px) {
+    .about-me__subtitle {
+        grid-template-columns: repeat(1, auto);
+        grid-template-rows: repeat(5, auto);
+        margin-top: 60px;
+        margin-bottom: 70px;
+        margin-left: 0;
+
+    }
+}

@@ -1,0 +1,23 @@
+.movies {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1140px;
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media (max-width: 900px) {
+    .movies {
+        width: calc(100vw - 60px);
+        margin-top: 85px;
+    }
+}
+
+@media (max-width: 450px) {
+    .movies {
+        width: 300px;
+        margin-top: 50px;
+    }
+}

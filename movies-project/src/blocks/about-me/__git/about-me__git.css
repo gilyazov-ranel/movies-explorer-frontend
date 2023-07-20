@@ -1,0 +1,26 @@
+.about-me__git {
+    margin: 0;
+    padding: 0;
+    width: 600px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    color: rgba(255, 255, 255, 1);
+}
+
+.about-me__git:hover {
+    opacity: 0.699999988079071;
+}
+
+@media (max-width: 900px) {
+    .about-me__git {
+        width: 364px;
+    }
+}
+
+@media (max-width: 650px) {
+    .about-me__git {
+        width: 150px;
+    }
+}

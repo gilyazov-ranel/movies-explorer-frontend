@@ -1,0 +1,14 @@
+.burger-menu__profile {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    cursor: pointer;
+}
+
+.burger-menu__profile:hover {
+    opacity: 0.699999988079071;
+}

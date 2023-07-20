@@ -1,0 +1,35 @@
+.header__burger {
+    margin: 0;
+    padding: 0;
+    display: none;
+    position: relative;
+    z-index: 50;
+    align-items: center;
+    justify-content: flex-end;
+    width: 44px;
+    height: 44px;
+    background: url(../../../images/icon__burger_menu.svg) no-repeat center center;
+    margin-top: 9px;
+    cursor: pointer;
+}
+
+.header__burger:hover {
+    opacity: 0.699999988079071;
+}
+
+@media (max-width: 900px) {
+    .header__burger {
+        display: flex
+    }
+
+}
+
+@media (max-width: 450px) {
+    .header__burger {
+        width: 40px;
+        height: 43px;
+        margin-top: 2px;
+    }
+
+
+}

@@ -1,0 +1,20 @@
+.about-project {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1140px;
+    padding-bottom: 142px;
+}
+
+@media (max-width: 900px) {
+    .about-project {
+        max-width: 668px;
+        padding-bottom: 120px;
+    }
+}
+
+@media (max-width: 450px) {
+    .about-project {
+        max-width: 284px;
+        padding-bottom: 100px;
+    }
+}

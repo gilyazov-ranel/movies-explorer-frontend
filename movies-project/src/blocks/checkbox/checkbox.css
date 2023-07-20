@@ -1,0 +1,14 @@
+.checkbox {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+}
+
+.checkbox input {
+    display: none;
+}
+
+.checkbox:hover {
+    opacity: 0.699999988079071;
+}

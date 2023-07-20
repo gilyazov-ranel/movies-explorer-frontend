@@ -1,0 +1,37 @@
+.about-project__title {
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.88px;
+    max-width: 1140px;
+    margin-top: 140px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #DADADA;
+}
+
+@media (max-width: 1210px) {
+    .about-project__title {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .about-project__title {
+        margin-top: 118px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 450px) {
+    .about-project__title {
+        margin-top: 90px;
+        padding-bottom: 25px;
+        margin-bottom: 6px;
+        font-size: 18px;
+        line-height: normal;
+        letter-spacing: -0.72px;
+    }
+}

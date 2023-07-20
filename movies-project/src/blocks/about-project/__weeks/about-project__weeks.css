@@ -1,0 +1,22 @@
+.about-project__weeks {
+    margin: 109px auto 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    height: 36px;
+}
+
+@media (max-width: 900px) {
+    .about-project__weeks {
+        margin-top: 92px;
+    }
+}
+
+@media (max-width: 450px) {
+    .about-project__weeks {
+        margin-top: 60px;
+    }
+}

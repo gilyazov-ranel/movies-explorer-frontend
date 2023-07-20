@@ -1,0 +1,15 @@
+.data__text {
+    margin: 0;
+    padding: 0;
+    color: rgba(139, 139, 139, 1);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (max-width: 450px) {
+    .data__text {
+        font-size: 12px;
+    }
+}

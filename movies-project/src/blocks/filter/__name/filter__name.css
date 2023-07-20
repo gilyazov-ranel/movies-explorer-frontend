@@ -1,0 +1,21 @@
+.filter__name {
+    margin: 0;
+    padding: 0;
+    margin-right: 14px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px
+}
+
+@media (max-width: 900px) {
+    .filter__name {
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 450px) {
+    .filter__name {
+        margin-right: 13px;
+        font-size: 11px;
+    }
+}

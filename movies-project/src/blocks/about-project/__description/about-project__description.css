@@ -1,0 +1,43 @@
+.about-project__description {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    width: 500px;
+    margin-top: 26px;
+    padding-right: 50px;
+}
+
+@media (max-width: 1210px) {
+    .about-project__description {
+        width: 39vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .about-project__description {
+        width: 319px;
+        margin-top: 23px;
+        padding-right: 0;
+        font-size: 12px;
+        line-height: 18px
+    }
+}
+
+@media (max-width: 700px) {
+    .about-project__description {
+        width: calc(100vw - 60vw);
+    }
+}
+
+@media (max-width: 450px) {
+    .about-project__description {
+        width: 284px;
+        font-size: 11px;
+        line-height: 16px;
+        margin-top: 16px;
+    }
+}

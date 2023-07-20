@@ -1,0 +1,20 @@
+.portfolio {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1140px;
+    margin-bottom: 153px;
+}
+
+@media (max-width: 900px) {
+    .portfolio {
+        max-width: 668px;
+        margin-bottom: 153px;
+    }
+}
+
+@media (max-width: 450px) {
+    .portfolio {
+        max-width: 292px;
+        margin-bottom: 130px;
+    }
+}

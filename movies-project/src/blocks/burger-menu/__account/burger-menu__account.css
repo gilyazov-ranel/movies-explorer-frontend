@@ -1,0 +1,13 @@
+.burger-menu__account {
+    margin: 0;
+    padding: 0;
+    background: url(../../../images/icon_account.svg) no-repeat center center rgba(49, 49, 49, 1);
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.burger-menu__account:hover {
+    opacity: 0.699999988079071;
+}

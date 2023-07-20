@@ -1,0 +1,12 @@
+.movie__time {
+    margin: 0;
+    padding: 0;
+    color: rgba(139, 139, 139, 1);
+    font-size: 11px;
+    font-weight: 400;
+    line-height: normal;
+    height: 13px;
+    margin-left: 14px;
+    padding-bottom: 15px;
+    align-self: self-end;
+}

@@ -1,0 +1,25 @@
+.burger-menu__close {
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    background: url(../../../images/icon_close_burger_menu.svg) no-repeat center center;
+    border: 0;
+    margin-top: 32px;
+    margin-left: 470px;
+    margin-bottom: 85px;
+    cursor: pointer;
+}
+
+.burger-menu__close:hover {
+    opacity: 0.699999988079071;
+}
+
+
+@media (max-width: 450px) {
+    .burger-menu__close {
+        margin-top: 38px;
+        margin-left: 278px;
+        margin-bottom: 75px;
+    }
+}
