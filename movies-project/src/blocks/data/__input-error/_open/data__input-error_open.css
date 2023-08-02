@@ -1,0 +1,14 @@
+.data__input-error__open {
+    margin: 0;
+    padding: 0;
+    margin-top: -5px;
+    display: flex;
+    color: rgba(238, 52, 101, 1);
+    min-height: 20px;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

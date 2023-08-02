@@ -7,6 +7,9 @@
 @import url(../../blocks/profile/__edit/profile__edit.css);
 @import url(../../blocks/opacity/opacity.css);
 @import url(../../blocks/profile/__save/profile__save.css);
+@import url(../../blocks/profile/__input-error/profile__input-error.css);
+@import url(../../blocks/profile/__error/profile__error.css);
+
 
 
 

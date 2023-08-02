@@ -1,32 +1,108 @@
 import './Register.css';
+import { useState } from 'react';
 
-function Register() {
+function Register({ onRegister,
+    errorMessageName,
+    errorMessageEmail,
+    errorMessagePassword,
+    errorMessage,
+    nameUser,
+    emailUser,
+    passwordUser,
+    onChangeName,
+    onChangeEmail,
+    onChangePassword,
+    validationField
+}) {
+
+    const [formValue, setFormValue] = useState({
+        name: '',
+        email: '',
+        password: '',
+    })
+
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setFormValue({
+            ...formValue,
+            [name]: value
+        })
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        onRegister(formValue);
+    }
+
+
     return (
         <main className='data'>
             <a href='/' className='data__logo'> </a>
             <h1 className='data__welcome'>
                 Добро пожаловать!
             </h1>
-            <form className='data__form'>
+            <form onSubmit={handleSubmit} className='data__form'>
                 <label className='data__title'>
                     Имя
                 </label>
-                <input className='data__input' placeholder='Имя' type='text' required
-/>
+                <input
+                    onFocus={e => nameUser.onFocus(e)}
+                    onChange={handleChange}
+                    className='data__input'
+                    name="name"
+                    placeholder='Имя'
+                    type='text'
+                    required
+                    value={formValue.name}
+                    onInput={onChangeName}
+                    minLength='2'
+                />
+                <span className={`data__input-error ` + validationField && `data__input-error__open`}>
+                    {errorMessageName}
+                </span>
                 <label className='data__title' >
                     E-mail
                 </label>
-                <input className='data__input' placeholder='Email' type='email' required
-/>
+                <input
+                    onFocus={e => emailUser.onFocus(e)}
+                    onChange={handleChange}
+                    name="email"
+                    className='data__input'
+                    placeholder='Email'
+                    type='email'
+                    required
+                    value={formValue.email}
+                    onInput={onChangeEmail}
+                />
+                <span className={`data__input-error ` + validationField && `data__input-error__open`}>
+                    {errorMessageEmail}
+                </span>
                 <label className='data__title'>
                     Пароль
                 </label>
-                <input className='data__input' placeholder='Пароль' type='password' required
-/>
-                <span className='data__input-error'>
-                    Что-то пошло не так...
+                <input
+                    onFocus={e => passwordUser.onFocus(e)}
+                    onChange={handleChange}
+                    name="password"
+                    className='data__input'
+                    placeholder='Пароль'
+                    type='password'
+                    required
+                    value={formValue.password}
+                    onInput={onChangePassword}
+                    minLength='8'
+                />
+                <span className={`data__input-error ` + validationField && `data__input-error__open`}>
+                    {errorMessagePassword}
                 </span>
-                <button type='submit' className='data__button'>
+                <span className='data__input-error__open'>
+                    {errorMessage}
+                </span>
+                <button type='submit'
+                    disabled={validationField || !nameUser.inputValid || !passwordUser.inputValid || !emailUser.inputValid}
+                    className='data__button'
+                    onSubmit={handleSubmit}
+                >
                     Зарегистрироваться
                 </button>
             </form>
@@ -37,7 +113,7 @@ function Register() {
                 </a>
             </p>
 
-        </main>
+        </main >
     )
 }
 export default Register;

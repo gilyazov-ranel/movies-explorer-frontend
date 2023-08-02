@@ -1,27 +1,83 @@
 import './Login.css';
+import { useState } from 'react';
 
-function Login() {
+function Login({ onLogin,
+    errorMessageEmail,
+    errorMessagePassword,
+    emailUser,
+    passwordUser,
+    onChangeEmail,
+    onChangePassword,
+    validationField,
+    errorMessage
+}) {
+
+    const [formValue, setFormValue] = useState({
+        email: '',
+        password: '',
+    })
+
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setFormValue({
+            ...formValue,
+            [name]: value
+        })
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        onLogin(formValue)
+    }
+
     return (
         <main className='data'>
             <a href='/' className='data__logo'> </a>
             <h2 className='data__welcome'>
                 Рады видеть!
             </h2>
-            <form className='data__form'>
+            <form onSubmit={handleSubmit} className='data__form'>
                 <label className='data__title' >
                     E-mail
                 </label>
-                <input className='data__input' placeholder='Email' type='email' required
+                <input
+                    onChange={handleChange}
+                    className='data__input'
+                    placeholder='Email'
+                    name='email'
+                    type='email'
+                    required
+                    onInput={onChangeEmail}
+                    onFocus={e => emailUser.onFocus(e)}
                 />
+                <span className={`data__input-error ` + validationField && `data__input-error__open`}>
+                    {errorMessageEmail}
+                </span>
                 <label className='data__title'>
                     Пароль
                 </label>
-                <input className='data__input' placeholder='Пароль' type='password' required
+                <input
+                    onChange={handleChange}
+                    className='data__input'
+                    placeholder='Пароль'
+                    type='password'
+                    required
+                    name='password'
+                    onFocus={e => passwordUser.onFocus(e)}
+                    onInput={onChangePassword}
+                    minLength='8'
                 />
-                <span className='data__input-error'>
-                    Что-то пошло не так...
+                <span className={`data__input-error ` + validationField && `data__input-error__open`}>
+                    {errorMessagePassword}
                 </span>
-                <button type='submit' className='data__button-login'>
+                <span className='data__input-error__open'>
+                    {errorMessage}
+                </span>
+                <button type='submit'
+                    className='data__button-login'
+                    onSubmit={handleSubmit}
+                    disabled={validationField || !passwordUser.inputValid || !emailUser.inputValid}
+                >
                     Войти
                 </button>
             </form>

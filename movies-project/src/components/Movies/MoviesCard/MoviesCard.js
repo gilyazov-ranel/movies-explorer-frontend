@@ -1,18 +1,39 @@
 import './MoviesCard.css';
+
 function MoviesCard({
-    nameMovie
+    movie,
+    onCreateMovies,
+    saveButton
+
 }) {
+
+    function durationMovie(duration) {
+        const hour = Math.floor(duration / 60);
+        const minute = duration % 60;
+        return `${hour} ч ${minute} м`
+    }
+
+    function saveMovie(movie) {
+        onCreateMovies(movie)
+    }
+
     return (
         <section className='movie'>
             <h2 className='movie__name'>
-                {nameMovie}
+                {movie.nameRU}
             </h2>
-            <button type='button' className='movie__save' />
+            <button type='button' className={ saveButton ?
+                'movie__save-active' : 'movie__save'
+            }
+            onClick={() => saveMovie(movie)}
+            disabled={saveButton}/>
             <p className='movie__time'>
-                1 ч 47 м
+                {durationMovie(movie.duration)}
             </p>
 
-            <img className='movie__image' src='https://w.forfun.com/fetch/b0/b029ca34284a080eb5c509994966d6f1.jpeg' alt={'Обложка фильма: ' + nameMovie} />
+            <a href={movie.trailerLink} target='blank'><img className='movie__image'
+                src={'https://api.nomoreparties.co/' + movie.image.url}
+                alt={'Обложка фильма: ' + movie.nameRU} /></a>
         </section>
     )
 }

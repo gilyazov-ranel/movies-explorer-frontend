@@ -19,3 +19,10 @@
 .profile__save:hover {
     opacity: .8;
 }
+
+.profile__save:disabled {
+    opacity: 1;
+    color: #C2C2C2;
+    background: #F8F8F8;
+    cursor: auto;
+}

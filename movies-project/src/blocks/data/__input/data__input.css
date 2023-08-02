@@ -1,7 +1,7 @@
 .data__input {
     margin: 0;
     padding: 0;
-    width: 381px;
+    min-width: 381px;
     height: 46px;
     border: 0;
     border-radius: 8px;
@@ -13,7 +13,7 @@
     outline: none;
     cursor: text;
     padding-left: 15px;
-    margin-bottom: 12px;
+    margin-bottom: 7px;
     margin-top: 10px;
 }
 

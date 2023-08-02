@@ -16,9 +16,13 @@
 }
 
 .data__button-login:hover {
-    opacity: 0.8;
+    opacity: .8;
 }
 
+.data__button-login:disabled {
+    opacity: .5;
+    cursor: auto;
+}
 
 @media (max-width: 450px) {
     .data__button-login {

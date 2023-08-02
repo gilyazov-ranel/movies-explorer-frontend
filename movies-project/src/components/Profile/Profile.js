@@ -1,26 +1,60 @@
 import './Profile.css';
-import { useState } from 'react';
 
 function Profile({
-    isBurgerMenu
+    isBurgerMenu,
+    onSignOut,
+    onEditProfile,
+    nameUser,
+    emailUser,
+    onChangeName,
+    onChangeEmail,
+    validationField,
+    errorMessageForm,
+    onSaveProfile,
+    isSaveProfile,
+    name,
+    setName,
+    nameGreeting,
+    setNameGreeting,
+    setEmail,
+    email,
 }
 ) {
-    const [isSaveProfile, setSaveProfile] = useState(true);
 
     function handleSaveProfile() {
         if (isSaveProfile) {
-            setSaveProfile(false)
-        } else {
-            setSaveProfile(true)
+            onSaveProfile(!isSaveProfile)
         }
     }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        onEditProfile({
+            name: name,
+            email: email,
+        })
+        setNameGreeting(name);
+    }
+
+    function handleChangeName(e) {
+        setName(e.target.value);
+        nameUser.onFocus(e);
+    }
+
+    function handleChangeEmail(e) {
+        setEmail(e.target.value);
+        emailUser.onFocus(e);
+    }
+
+    console.log(isSaveProfile)
     return (
         <main className={'profile ' + (isBurgerMenu ? 'opacity' : '')}>
             <h1 className='profile__name'>
-                Привет, Александр!
+                Привет, {nameGreeting ?? ''}!
             </h1>
-            <form className='profile__form'>
+            <form
+                className='profile__form'
+            >
 
                 <label className='profile__title'>
                     Имя
@@ -28,10 +62,13 @@ function Profile({
                 <input
                     className='profile__input'
                     type='text'
-                    defaultValue='Александр'
+                    value={name ?? ''}
                     required
                     disabled={isSaveProfile}
                     placeholder='Имя'
+                    onChange={handleChangeName}
+                    onInput={onChangeName}
+                    minLength='2'
                 />
                 <label className='profile__title'>
                     E-mail
@@ -39,25 +76,39 @@ function Profile({
                 <input
                     className='profile__input'
                     type='email'
-                    defaultValue='spasibo_z@_podskazki.ru'
+                    value={email ?? ''}
                     required
                     disabled={isSaveProfile}
                     placeholder='E-mail'
+                    onChange={handleChangeEmail}
+                    onInput={onChangeEmail}
                 />
+
+                <span className={`profile__input-error`}>
+                    {validationField && 'Что-то не так...'}
+                </span>
+                <p className='profile__error'>
+                    {errorMessageForm && 'При обновлении профиля произошла ошибка.'}
+                </p>
                 {
                     isSaveProfile ? <>
                         <button type='button' className='profile__edit' onClick={handleSaveProfile} >
                             Редактировать
                         </button>
-                        <a className='profile__exit' href='/'>
+                        <button className='profile__exit' to='/' onClick={onSignOut}>
                             Выйти из аккаунта
-                        </a>
-                    </> : <button type='submit' className='profile__save' onClick={handleSaveProfile}>
-                        Сохранить
-                    </button>
-
+                        </button>
+                    </> :
+                        <button type='submit'
+                            disabled={validationField}
+                            className='profile__save'
+                            onClick={handleSubmit}
+                        >
+                            Сохранить
+                        </button>
                 }
             </form>
+
         </main>
 
     )
