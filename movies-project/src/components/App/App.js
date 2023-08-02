@@ -56,7 +56,7 @@ function App() {
   const emailUser = useInput('', { isEmpty: true, minLength: 0, isEmail: false });
   const passwordUser = useInput('', { isEmpty: true, minLength: 8 });
   const [preloader, setPreloader] = useState(false);
-  const [resultrequestServer, setresultrequestServer] = useState('');
+  const [resultRequestServer, setResultRequestServer] = useState('');
 
   const token = localStorage.getItem('token');
   const mainApi = new MainApi('https://api.project.movies.nomoreparties.sbs', token)
@@ -76,7 +76,7 @@ function App() {
     })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [counterMovie])
+  }, [counterMovie, loggedIn])
 
   useEffect(() => {
     setErrorMessageName('');
@@ -94,6 +94,7 @@ function App() {
     setLocalSearchSave(searchSave);
     setLocalDuration(isDuration);
     setLocalDurationSaveMovies(isDurationSaveMovies);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterMovies, search, searchSave, isDuration, isDurationSaveMovies]);
 
@@ -113,9 +114,9 @@ function App() {
       moviesApi.getMovies().then(movie => {
         setMovies(movie);
         setPreloader(false);
-        setresultrequestServer('Нужно ввести ключевое слово');
+        setResultRequestServer('Нужно ввести ключевое слово');
       }).catch((err) => {
-        setresultrequestServer('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
+        setResultRequestServer('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
         console.log(err);
       })
     }
@@ -156,7 +157,6 @@ function App() {
     setPreloader(true);
     setFilterMovies(
       movies.filter(movie => {
-        setTimeout(() => setPreloader(false), 700);
         if (isDuration) {
           if (movie.duration < 41) {
             return movie.nameRU.toLowerCase().includes(search.toLowerCase()) || movie.nameEN.toLowerCase().includes(search.toLowerCase())
@@ -166,19 +166,21 @@ function App() {
         return movie.nameRU.toLowerCase().includes(search.toLowerCase()) || movie.nameEN.toLowerCase().includes(search.toLowerCase())
       })
     );
+    setTimeout(() => setPreloader(false), 700);
     setSearchingResults(true);
   }
+
 
   function filterSaveMoviesSearch() {
     setFilterSaveMovies(
       saveMovies.filter(movie => {
         if (isDurationSaveMovies) {
           if (movie.duration < 41) {
-            return movie.nameRU.toLowerCase().includes(search.toLowerCase()) || movie.nameEN.toLowerCase().includes(search.toLowerCase())
+            return movie.nameRU.toLowerCase().includes(searchSave.toLowerCase()) || movie.nameEN.toLowerCase().includes(searchSave.toLowerCase());
           }
           return 0;
         }
-        return movie.nameRU.toLowerCase().includes(search.toLowerCase()) || movie.nameEN.toLowerCase().includes(search.toLowerCase())
+        return movie.nameRU.toLowerCase().includes(searchSave.toLowerCase()) || movie.nameEN.toLowerCase().includes(searchSave.toLowerCase());
       })
     );
     setSearchingResults(true);
@@ -273,6 +275,12 @@ function App() {
     localStorage.removeItem('searchSave');
     localStorage.removeItem('search');
     localStorage.removeItem('duration');
+    localStorage.removeItem('durationSave');
+    setSearch('');
+    setSearchSave('');
+    setFilterSaveMovies([]);
+    setFilterMovies([]);
+    setSearchingResults(false);
     handleTransitionRegister();
   }
 
@@ -354,7 +362,7 @@ function App() {
             onCreateMovies={handleCreateMovies}
             saveMovies={saveMovies}
             preloader={preloader}
-            resultrequestServer={resultrequestServer}
+            resultRequestServer={resultRequestServer}
           />
           <Footer />
         </ProtectedRoute>} />
@@ -373,6 +381,7 @@ function App() {
             userId={userId}
             onDeleteMovies={handleDeleteMovies}
             moviesButton={filterSaveMoviesSearch}
+            searchingResults={searchingResults}
             onDuration={setDurationSaveMovies}
             duration={isDurationSaveMovies}
             onSearch={setSearchSave}

@@ -4,7 +4,8 @@ import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import Preloader from './Preloader/Preloader'
 
-function Movies({ isBurgerMenu,
+function Movies({
+    isBurgerMenu,
     movies,
     onSearch,
     search,
@@ -17,7 +18,7 @@ function Movies({ isBurgerMenu,
     onCreateMovies,
     saveMovies,
     preloader,
-    resultrequestServer
+    resultRequestServer
 }) {
 
     return (
@@ -30,20 +31,20 @@ function Movies({ isBurgerMenu,
                 onSearchingResults={onSearchingResults}
                 onFilterMovies={onFilterMovies}
                 search={search}
+                chekboxActivion={search}
             />
             {
-               preloader ? <Preloader /> :
+                preloader ? <Preloader /> :
 
-            <MoviesCardList
-                movies={movies}
-                search={search}
-                searchingResults={searchingResults}
-                onCreateMovies={onCreateMovies}
-                saveMovies={saveMovies}
-                preloader={preloader}
-                resultrequestServer={resultrequestServer}
-            />
-}
+                    <MoviesCardList
+                        movies={movies}
+                        search={search}
+                        searchingResults={searchingResults}
+                        onCreateMovies={onCreateMovies}
+                        saveMovies={saveMovies}
+                        resultRequestServer={resultRequestServer}
+                    />
+            }
         </main>
 
     );

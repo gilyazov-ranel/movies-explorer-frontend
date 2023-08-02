@@ -46,7 +46,6 @@ function Profile({
         emailUser.onFocus(e);
     }
 
-    console.log(isSaveProfile)
     return (
         <main className={'profile ' + (isBurgerMenu ? 'opacity' : '')}>
             <h1 className='profile__name'>

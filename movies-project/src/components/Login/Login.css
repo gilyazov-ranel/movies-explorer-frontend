@@ -9,4 +9,5 @@
 @import url(../../blocks/data/__text/data__text.css);
 @import url(../../blocks/data/__link/data__link.css);
 @import url(../../blocks/data/__input-error/_open/data__input-error_open.css);
+@import url(../../blocks/data/__error/data__error.css);
 

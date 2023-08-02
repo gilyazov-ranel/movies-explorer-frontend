@@ -8,7 +8,8 @@ function SearchForm({
     onSearchingResults,
     onFilterMovies,
     search,
-    saveMovies
+    saveMovies,
+    chekboxActivion
  }) {
 
     return (
@@ -28,14 +29,15 @@ function SearchForm({
                         }
                     }}>
                 </input>
-                <button type='button' className='search__button' onClick={moviesButton} disabled={search.length === 0}>
+                <button type='button' className='search__button' onClick={moviesButton} disabled={chekboxActivion.length === 0}>
                 </button>
             </form>
             <FilterCheckbox
                 onDuration={onDuration}
                 duration={duration}
                 moviesButton={moviesButton}
-                search={search} />
+                chekboxActivion={chekboxActivion}
+            />
         </section>
 
     )

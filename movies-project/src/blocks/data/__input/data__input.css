@@ -1,7 +1,7 @@
 .data__input {
     margin: 0;
     padding: 0;
-    min-width: 381px;
+    width: 381px;
     height: 46px;
     border: 0;
     border-radius: 8px;

@@ -13,7 +13,8 @@ function SavedMovies({
     search,
     onFilterMovies,
     onDuration,
-    filterSaveMovies
+    filterSaveMovies,
+    searchingResults
 }) {
     return (
 
@@ -27,12 +28,15 @@ function SavedMovies({
                 onDuration={onDuration}
                 search={search}
                 saveMovies={saveMovies}
+                filterSaveMovies={filterSaveMovies}
+                chekboxActivion ={saveMovies}
             />
             <MoviesCardList
                 userId={userId}
                 saveMovies={filterSaveMovies}
                 onDeleteMovies={onDeleteMovies}
                 search={search}
+                searchingResults={searchingResults}
             />
         </main>
     )

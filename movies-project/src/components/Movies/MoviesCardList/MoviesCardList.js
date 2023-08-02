@@ -7,7 +7,7 @@ function MoviesCardList({
     searchingResults,
     onCreateMovies,
     saveMovies,
-    resultrequestServer
+    resultRequestServer
 }) {
     let [isIndex, setIndex] = useState(window.innerWidth > 768 ? 12 : window.innerWidth > 481 ? 8 : 5);
 
@@ -42,9 +42,7 @@ function MoviesCardList({
             {(movies.length !== 0) ?
                 <>
                     <div className='movies__card'>
-                        {
-                            filterMovies
-                        }
+                        {filterMovies}
                     </div>
                     {filterMovies.length !== movies.length ?
                         < button type='button' className='movies__button' onClick={() => { showMore() }}>
@@ -54,7 +52,7 @@ function MoviesCardList({
                     }
 
                 </>
-                : (searchingResults) ? 'Ничего не найдено' : resultrequestServer
+                : (searchingResults) ? 'Ничего не найдено' : resultRequestServer
             }
 
 

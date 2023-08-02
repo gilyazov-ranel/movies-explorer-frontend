@@ -95,7 +95,7 @@ function Register({ onRegister,
                 <span className={`data__input-error ` + validationField && `data__input-error__open`}>
                     {errorMessagePassword}
                 </span>
-                <span className='data__input-error__open'>
+                <span className='data__error'>
                     {errorMessage}
                 </span>
                 <button type='submit'

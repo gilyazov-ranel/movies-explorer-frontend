@@ -5,7 +5,7 @@ function MoviesCardList({
     userId,
     saveMovies,
     onDeleteMovies,
-    search,
+    searchingResults,
 }) {
 
     let filterMovies = saveMovies.filter((i => i.owner === userId)).map((movie, id) => {
@@ -16,7 +16,7 @@ function MoviesCardList({
 
     return (
         <section className='movies'>
-            {(filterMovies.length !== 0 && search.length !== 0) ?
+            {(searchingResults && filterMovies.length === 0) ?
                 'Ничего не найдено':
                 <div className='movies__card'>
                     {filterMovies}
