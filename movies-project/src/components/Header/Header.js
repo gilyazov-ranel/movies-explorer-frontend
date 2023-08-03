@@ -16,14 +16,20 @@ function Header({
             </nav>}
 
             <div className='header__block'>
-                {loggedIn ? <><Link to='/profile' className={'header__profile'}>
-                    Аккаунт
-                </Link><Link to='/profile' className='header__account'> </Link></> :
-                    <><Link to='/signup' className={'header__button'}>
-                        Регистрация
-                    </Link><Link to='/signin' className='header__landing'>
+                {loggedIn ? <>
+                    <Link to='/profile' className='header__profile'>
+                        Аккаунт
+                    </Link>
+                    <Link to='/profile' className='header__account'>
+                    </Link></> :
+                    <>
+                        <Link to='/signup' className='header__button'>
+                            Регистрация
+                        </Link>
+                        <Link to='/signin' className='header__landing'>
                             Войти
-                        </Link></>}
+                        </Link>
+                    </>}
 
                 <div className={(loggedIn ? 'header__burger' : '')
                 }

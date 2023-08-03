@@ -19,7 +19,7 @@ export function useInput(initalValue, validations) {
         onChange,
         onFocus,
         isDirty,
-        ...valid
+        ...valid,
     }
 
 }

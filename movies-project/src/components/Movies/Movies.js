@@ -2,7 +2,6 @@ import './Movies.css'
 import './SearchForm/SearchForm';
 import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
-import Preloader from './Preloader/Preloader'
 
 function Movies({
     isBurgerMenu,
@@ -33,9 +32,6 @@ function Movies({
                 search={search}
                 chekboxActivion={search}
             />
-            {
-                preloader ? <Preloader /> :
-
                     <MoviesCardList
                         movies={movies}
                         search={search}
@@ -43,8 +39,9 @@ function Movies({
                         onCreateMovies={onCreateMovies}
                         saveMovies={saveMovies}
                         resultRequestServer={resultRequestServer}
+                        preloader={preloader}
                     />
-            }
+
         </main>
 
     );

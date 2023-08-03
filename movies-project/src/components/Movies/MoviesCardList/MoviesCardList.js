@@ -1,13 +1,15 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useEffect, useState } from 'react';
+import Preloader from '../Preloader/Preloader'
 
 function MoviesCardList({
     movies,
     searchingResults,
     onCreateMovies,
     saveMovies,
-    resultRequestServer
+    resultRequestServer,
+    preloader
 }) {
     let [isIndex, setIndex] = useState(window.innerWidth > 768 ? 12 : window.innerWidth > 481 ? 8 : 5);
 
@@ -39,22 +41,23 @@ function MoviesCardList({
     }
     return (
         <section className='movies'>
-            {(movies.length !== 0) ?
-                <>
-                    <div className='movies__card'>
-                        {filterMovies}
-                    </div>
-                    {filterMovies.length !== movies.length ?
-                        < button type='button' className='movies__button' onClick={() => { showMore() }}>
-                            Ёще
-                        </button>
-                        : ''
-                    }
+            {
+                preloader ? <Preloader /> :
+                    (movies.length !== 0) ?
+                        <>
+                            <div className='movies__card'>
+                                {filterMovies}
+                            </div>
+                            {filterMovies.length !== movies.length ?
+                                < button type='button' className='movies__button' onClick={() => { showMore() }}>
+                                    Ёще
+                                </button>
+                                : ''
+                            }
 
-                </>
-                : (searchingResults) ? 'Ничего не найдено' : resultRequestServer
+                        </>
+                        : (searchingResults) ? 'Ничего не найдено' : resultRequestServer
             }
-
 
         </section >
     )

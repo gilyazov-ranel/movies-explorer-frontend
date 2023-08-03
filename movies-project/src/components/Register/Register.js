@@ -12,7 +12,8 @@ function Register({ onRegister,
     onChangeName,
     onChangeEmail,
     onChangePassword,
-    validationField
+    validationField,
+    validationFieldEmail
 }) {
 
     const [formValue, setFormValue] = useState({
@@ -34,7 +35,6 @@ function Register({ onRegister,
         onRegister(formValue);
     }
 
-
     return (
         <main className='data'>
             <a href='/' className='data__logo'> </a>
@@ -49,7 +49,7 @@ function Register({ onRegister,
                     onFocus={e => nameUser.onFocus(e)}
                     onChange={handleChange}
                     className='data__input'
-                    name="name"
+                    name='name'
                     placeholder='Имя'
                     type='text'
                     required
@@ -57,9 +57,7 @@ function Register({ onRegister,
                     onInput={onChangeName}
                     minLength='2'
                 />
-                <span className={`data__input-error ` + validationField && `data__input-error__open`}>
-                    {errorMessageName}
-                </span>
+
                 <label className='data__title' >
                     E-mail
                 </label>
@@ -74,9 +72,7 @@ function Register({ onRegister,
                     value={formValue.email}
                     onInput={onChangeEmail}
                 />
-                <span className={`data__input-error ` + validationField && `data__input-error__open`}>
-                    {errorMessageEmail}
-                </span>
+
                 <label className='data__title'>
                     Пароль
                 </label>
@@ -93,13 +89,19 @@ function Register({ onRegister,
                     minLength='8'
                 />
                 <span className={`data__input-error ` + validationField && `data__input-error__open`}>
-                    {errorMessagePassword}
+                    {(errorMessageName && validationField) && 'Ошибка в поле Имя: ' + errorMessageName.toLowerCase()}
+                </span>
+                <span className={`data__input-error ` + validationFieldEmail && `data__input-error__open`}>
+                    {((formValue.email && validationFieldEmail) || errorMessageEmail ) && 'Ошибка в поле E-mail: ' + (errorMessageEmail.toLowerCase() || 'допишите доменное имя')}
+                </span>
+                <span className={`data__input-error ` + validationField && `data__input-error__open`}>
+                {(errorMessagePassword && validationField) && 'Ошибка в поле Пароль: ' +  errorMessagePassword.toLowerCase()  }
                 </span>
                 <span className='data__error'>
                     {errorMessage}
                 </span>
                 <button type='submit'
-                    disabled={validationField || !nameUser.inputValid || !passwordUser.inputValid || !emailUser.inputValid}
+                    disabled={validationField || validationFieldEmail || !nameUser.inputValid || !passwordUser.inputValid || !emailUser.inputValid}
                     className='data__button'
                     onSubmit={handleSubmit}
                 >

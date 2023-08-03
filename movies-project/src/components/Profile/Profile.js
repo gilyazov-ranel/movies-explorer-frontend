@@ -18,6 +18,7 @@ function Profile({
     setNameGreeting,
     setEmail,
     email,
+    validationFieldEmail
 }
 ) {
 
@@ -63,7 +64,7 @@ function Profile({
                     type='text'
                     value={name ?? ''}
                     required
-                    disabled={isSaveProfile}
+                    // disabled={!isSaveProfile}
                     placeholder='Имя'
                     onChange={handleChangeName}
                     onInput={onChangeName}
@@ -77,30 +78,30 @@ function Profile({
                     type='email'
                     value={email ?? ''}
                     required
-                    disabled={isSaveProfile}
+                    // disabled={!isSaveProfile}
                     placeholder='E-mail'
                     onChange={handleChangeEmail}
                     onInput={onChangeEmail}
                 />
 
                 <span className={`profile__input-error`}>
-                    {validationField && 'Что-то не так...'}
+                    {(validationField || validationFieldEmail) && 'Что-то не так...'}
                 </span>
                 <p className='profile__error'>
                     {errorMessageForm && 'При обновлении профиля произошла ошибка.'}
                 </p>
                 {
                     isSaveProfile ? <>
-                        <button type='button' className='profile__edit' onClick={handleSaveProfile} >
+                        <button type='button' className='profile__edit' onClick={handleSaveProfile} disabled={validationField || validationFieldEmail}>
                             Редактировать
                         </button>
-                        <button className='profile__exit' to='/' onClick={onSignOut}>
+                        <button className='profile__exit' to='/' onClick={onSignOut} >
                             Выйти из аккаунта
                         </button>
                     </> :
                         <button type='submit'
-                            disabled={validationField}
                             className='profile__save'
+                            disabled={validationField || validationFieldEmail}
                             onClick={handleSubmit}
                         >
                             Сохранить

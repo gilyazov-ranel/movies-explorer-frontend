@@ -9,7 +9,9 @@ function Login({ onLogin,
     onChangeEmail,
     onChangePassword,
     validationField,
-    errorMessage
+    errorMessage,
+    validationFieldEmail,
+    exitLatch
 }) {
 
     const [formValue, setFormValue] = useState({
@@ -41,18 +43,16 @@ function Login({ onLogin,
                     E-mail
                 </label>
                 <input
+                    onFocus={e => emailUser.onFocus(e)}
                     onChange={handleChange}
                     className='data__input'
                     placeholder='Email'
                     name='email'
                     type='email'
                     required
+                    value={formValue.email}
                     onInput={onChangeEmail}
-                    onFocus={e => emailUser.onFocus(e)}
                 />
-                <span className={`data__input-error ` + validationField && `data__input-error__open`}>
-                    {errorMessageEmail}
-                </span>
                 <label className='data__title'>
                     Пароль
                 </label>
@@ -63,12 +63,16 @@ function Login({ onLogin,
                     type='password'
                     required
                     name='password'
+                    value={formValue.password}
                     onFocus={e => passwordUser.onFocus(e)}
                     onInput={onChangePassword}
                     minLength='8'
                 />
+                <span className={`data__input-error ` + validationFieldEmail && `data__input-error__open`}>
+                    {((formValue.email && validationFieldEmail) || errorMessageEmail ) && 'Ошибка в поле E-mail: ' + (errorMessageEmail.toLowerCase() || 'допишите доменное имя')}
+                </span>
                 <span className={`data__input-error ` + validationField && `data__input-error__open`}>
-                    {errorMessagePassword}
+                {(errorMessagePassword && validationField) && 'Ошибка в поле Пароль: ' +  errorMessagePassword.toLowerCase()  }
                 </span>
                 <span className='data__error'>
                     {errorMessage}
@@ -76,7 +80,7 @@ function Login({ onLogin,
                 <button type='submit'
                     className='data__button-login'
                     onSubmit={handleSubmit}
-                    disabled={validationField || !passwordUser.inputValid || !emailUser.inputValid}
+                    disabled={validationField || validationFieldEmail || !passwordUser.inputValid || !emailUser.inputValid || exitLatch}
                 >
                     Войти
                 </button>

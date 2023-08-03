@@ -40,7 +40,8 @@ function App() {
   const [filterSaveMovies, setFilterSaveMovies] = useState([]);
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [validationField, setvalidationField] = useState(false);
+  const [validationField, setValidationField] = useState(false);
+  const [validationFieldEmail, setValidationFieldEmail] = useState(false);
   const [userId, setUserId] = useState('');
 
   const [counterMovie, setCounterMovies] = useState('')
@@ -54,10 +55,12 @@ function App() {
   const [errorMessageForm, serErrorMessageForm] = useState(false)
   const nameUser = useInput('', { isEmpty: true, minLength: 2 });
   const emailUser = useInput('', { isEmpty: true, minLength: 0, isEmail: false });
+  const nameUserProfile = useInput('', { isEmpty: true, minLength: 2 });
+  const emailUserProfile = useInput('', { isEmpty: true, minLength: 0, isEmail: false });
   const passwordUser = useInput('', { isEmpty: true, minLength: 8 });
   const [preloader, setPreloader] = useState(false);
   const [resultRequestServer, setResultRequestServer] = useState('');
-
+  const [exitLatch, setExitLatch] = useState(false)
   const token = localStorage.getItem('token');
   const mainApi = new MainApi('https://api.project.movies.nomoreparties.sbs', token)
 
@@ -68,25 +71,18 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    mainApi.getMovies().then(items => {
-      setSaveMovies(items.movies);
-      setFilterSaveMovies(items.movies);
-    }).catch((err) => {
-      console.log(err);
-    })
+    if (token) {
+      mainApi.getMovies().then(items => {
+        setSaveMovies(items.movies);
+        setFilterSaveMovies(items.movies);
+        setExitLatch(false);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [counterMovie, loggedIn])
-
-  useEffect(() => {
-    setErrorMessageName('');
-    setErrorMessageEmail('');
-    setErrorMessagePassword('');
-    serErrorMessageForm(false);
-    setvalidationField(true);
-    setSaveProfile(true);
-    setErrorMessage('');
-  }, [location])
+  }, [counterMovie, loggedIn, token])
 
   useEffect(() => {
     setLocalFilterMovies(filterMovies);
@@ -127,22 +123,44 @@ function App() {
   useEffect(() => {
     if ((nameUser.isDirty && nameUser.isEmpty) ||
       (nameUser.isDirty && nameUser.minLengthError) ||
-      (emailUser.isDirty && emailUser.isEmpty) ||
-      (emailUser.isDirty && emailUser.minLengthError) ||
-      (emailUser.isDirty && emailUser.emailError) ||
+      (nameUserProfile.isDirty && nameUserProfile.isEmpty) ||
+      (nameUserProfile.isDirty && nameUserProfile.minLengthError) ||
       (passwordUser.isDirty && passwordUser.isEmpty) ||
       (passwordUser.isDirty && passwordUser.minLengthError)) {
-      setvalidationField(true);
+      setValidationField(true);
     } else {
-      setvalidationField(false);
+      setValidationField(false);
+    }
+
+    if ((emailUser.isDirty && emailUser.isEmpty) ||
+      (emailUser.isDirty && emailUser.minLengthError) ||
+      (emailUser.isDirty && emailUser.emailError) ||
+      (emailUserProfile.isDirty && emailUserProfile.isEmpty) ||
+      (emailUserProfile.isDirty && emailUserProfile.minLengthError) ||
+      (emailUserProfile.isDirty && emailUserProfile.emailError)) {
+      setValidationFieldEmail(true);
+    } else {
+      setValidationFieldEmail(false);
     }
 
   }, [
     emailUser,
+    emailUserProfile,
+    nameUserProfile,
     nameUser,
-    passwordUser,
-    validationField,
+    passwordUser
   ])
+
+  useEffect(() => {
+    setErrorMessageName('');
+    setErrorMessageEmail('');
+    setErrorMessagePassword('');
+    serErrorMessageForm(false);
+    setValidationField(true);
+    setValidationFieldEmail(true);
+    setSaveProfile(true);
+    setErrorMessage('');
+  }, [location])
 
 
   function handleOpenBurgerMenu() {
@@ -190,19 +208,19 @@ function App() {
     setLoggedIn(true)
   };
 
-  function handleTransitionRegister() {
-    navigate('/signin');
-    setvalidationField(true);
-  }
-
   function handleTransitionMovies() {
     navigate('/movies');
   }
 
   function handleRegister(form) {
+    const password = form.password;
+
     mainApi.register(form).then((form) => {
       if (form) {
-        handleTransitionRegister();
+        handleLogin({
+          email: form.email,
+          password: password
+        })
       }
     })
       .catch((err) => {
@@ -212,11 +230,11 @@ function App() {
   };
 
   function handleLogin(form) {
+
     mainApi.authorize(form).then((form) => {
       if (form) {
         handleLoginIn();
         handleTransitionMovies();
-        setUserId(form.user._id);
       }
     })
       .catch((err) => {
@@ -281,11 +299,23 @@ function App() {
     setFilterSaveMovies([]);
     setFilterMovies([]);
     setSearchingResults(false);
-    handleTransitionRegister();
+    navigate('/');
+    setExitLatch(true);
+    setLoggedIn(false);
   }
 
   function handleChangeName(e) {
     nameUser.onChange(e);
+    setErrorMessageName(e.target.validationMessage);
+  }
+
+  function handleChangeNameProfile(e) {
+    nameUserProfile.onChange(e);
+    setErrorMessageName(e.target.validationMessage);
+  }
+
+  function handleChangeEmailProfile(e) {
+    emailUserProfile.onChange(e);
     setErrorMessageName(e.target.validationMessage);
   }
 
@@ -312,7 +342,9 @@ function App() {
           onChangeEmail={handleChangeEmail}
           onChangePassword={handleChangePassword}
           validationField={validationField}
-          errorMessage={errorMessage} />} />
+          validationFieldEmail={validationFieldEmail}
+          errorMessage={errorMessage}
+          exitLatch={exitLatch} />} />
 
         <Route path='/signup' element={<Register
           onRegister={handleRegister}
@@ -326,7 +358,8 @@ function App() {
           onChangeName={handleChangeName}
           onChangeEmail={handleChangeEmail}
           onChangePassword={handleChangePassword}
-          validationField={validationField} />} />
+          validationField={validationField}
+          validationFieldEmail={validationFieldEmail} />} />
 
         <Route path='/' element={
 
@@ -403,11 +436,12 @@ function App() {
               onEditProfile={handleEditProfile}
               errorMessageEmail={errorMessageEmail}
               errorMessageName={errorMessageName}
-              emailUser={emailUser}
-              nameUser={nameUser}
-              onChangeName={handleChangeName}
-              onChangeEmail={handleChangeEmail}
+              emailUser={emailUserProfile}
+              nameUser={nameUserProfile}
+              onChangeName={handleChangeNameProfile}
+              onChangeEmail={handleChangeEmailProfile}
               validationField={validationField}
+              validationFieldEmail={validationFieldEmail}
               errorMessageForm={errorMessageForm}
               isSaveProfile={isSaveProfile}
               onSaveProfile={setSaveProfile}
