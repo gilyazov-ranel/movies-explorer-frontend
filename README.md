@@ -2,4 +2,4 @@
 
 [Ссылка на проект](https://project.movies.nomoreparties.co/)
 
-[Ссылка на pull requests](https://github.com/gilyazov-ranel/movies-explorer-frontend/pulls)
+[Ссылка на pull requests](https://github.com/gilyazov-ranel/movies-explorer-frontend/pull/2))
