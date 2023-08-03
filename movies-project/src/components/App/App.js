@@ -164,8 +164,6 @@ function App() {
     setErrorMessageEmail('');
     setErrorMessagePassword('');
     serErrorMessageForm(false);
-    setValidationField(true);
-    setValidationFieldEmail(true);
     setSaveProfile(true);
     setErrorMessage('');
   }, [location])
@@ -308,6 +306,8 @@ function App() {
     setSearchingResults(false);
     navigate('/');
     setLoggedIn(false);
+    setValidationFieldEmail(true);
+    setValidationField(true);
   }
 
   function handleChangeName(e) {
