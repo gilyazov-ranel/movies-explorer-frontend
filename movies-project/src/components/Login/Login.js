@@ -11,7 +11,7 @@ function Login({ onLogin,
     validationField,
     errorMessage,
     validationFieldEmail,
-    exitLatch
+
 }) {
 
     const [formValue, setFormValue] = useState({
@@ -80,7 +80,7 @@ function Login({ onLogin,
                 <button type='submit'
                     className='data__button-login'
                     onSubmit={handleSubmit}
-                    disabled={validationField || validationFieldEmail || !passwordUser.inputValid || !emailUser.inputValid || exitLatch}
+                    disabled={validationField || validationFieldEmail || !passwordUser.inputValid || !emailUser.inputValid }
                 >
                     Войти
                 </button>

@@ -52,7 +52,7 @@ function App() {
   const [errorMessageEmail, setErrorMessageEmail] = useState('');
   const [errorMessagePassword, setErrorMessagePassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('')
-  const [errorMessageForm, serErrorMessageForm] = useState(false)
+  const [errorMessageForm, serErrorMessageForm] = useState(false);
   const nameUser = useInput('', { isEmpty: true, minLength: 2 });
   const emailUser = useInput('', { isEmpty: true, minLength: 0, isEmail: false });
   const nameUserProfile = useInput('', { isEmpty: true, minLength: 2 });
@@ -60,7 +60,6 @@ function App() {
   const passwordUser = useInput('', { isEmpty: true, minLength: 8 });
   const [preloader, setPreloader] = useState(false);
   const [resultRequestServer, setResultRequestServer] = useState('');
-  const [exitLatch, setExitLatch] = useState(false)
   const token = localStorage.getItem('token');
   const mainApi = new MainApi('https://api.project.movies.nomoreparties.sbs', token)
 
@@ -75,7 +74,6 @@ function App() {
       mainApi.getMovies().then(items => {
         setSaveMovies(items.movies);
         setFilterSaveMovies(items.movies);
-        setExitLatch(false);
       }).catch((err) => {
         console.log(err);
       })
@@ -143,13 +141,23 @@ function App() {
       setValidationFieldEmail(false);
     }
 
-  }, [
-    emailUser,
-    emailUserProfile,
-    nameUserProfile,
-    nameUser,
-    passwordUser
-  ])
+  }, [nameUser.isEmpty,
+  nameUserProfile.isEmpty,
+  nameUser.minLengthError,
+  passwordUser.isEmpty,
+  passwordUser.minLengthError,
+  emailUser.isDirty,
+  emailUser.isEmpty,
+  emailUser.emailError,
+  emailUserProfile.isEmpty,
+  emailUserProfile.minLengthError,
+  nameUser.isDirty,
+  nameUserProfile.isDirty,
+  nameUserProfile.minLengthError,
+  passwordUser.isDirty,
+  emailUser.minLengthError,
+  emailUserProfile.isDirty,
+  emailUserProfile.emailError])
 
   useEffect(() => {
     setErrorMessageName('');
@@ -240,7 +248,6 @@ function App() {
       .catch((err) => {
         console.log(err);
         setErrorMessage('Неправильные почта или пароль');
-
       })
   };
 
@@ -300,7 +307,6 @@ function App() {
     setFilterMovies([]);
     setSearchingResults(false);
     navigate('/');
-    setExitLatch(true);
     setLoggedIn(false);
   }
 
@@ -344,7 +350,7 @@ function App() {
           validationField={validationField}
           validationFieldEmail={validationFieldEmail}
           errorMessage={errorMessage}
-          exitLatch={exitLatch} />} />
+        />} />
 
         <Route path='/signup' element={<Register
           onRegister={handleRegister}
