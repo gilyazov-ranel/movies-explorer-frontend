@@ -23,36 +23,36 @@ function App() {
 
   const [localFilterMovies, setLocalFilterMovies] = useLocalStorage([], 'movies');
   const [localSearch, setLocalSearch] = useLocalStorage('', 'search');
-  const [localSearchSave, setLocalSearchSave] = useLocalStorage('', 'searchSave');
   const [localDuration, setLocalDuration] = useLocalStorage(false, 'duration');
-  const [localDurationSaveMovies, setLocalDurationSaveMovies] = useLocalStorage(false, 'durationSave');
 
   const [isBurgerMenu, setBurgerMenu] = useState(false);
   const [isDuration, setDuration] = useState(localDuration || false);
-  const [isDurationSaveMovies, setDurationSaveMovies] = useState(localDurationSaveMovies || false);
+  const [isDurationSaveMovies, setDurationSaveMovies] = useState(false);
   const [isSaveProfile, setSaveProfile] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
 
   const [movies, setMovies] = useState([]);
   const [filterMovies, setFilterMovies] = useState(localFilterMovies || []);
   const [searchingResults, setSearchingResults] = useState(false);
+  const [searchingSaveResults, setSearchingSaveResults] = useState(false);
+
   const [saveMovies, setSaveMovies] = useState([]);
-  const [filterSaveMovies, setFilterSaveMovies] = useState([]);
+  const [filterSaveMovies, setFilterSaveMovies] = useState([])
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [validationField, setValidationField] = useState(false);
   const [validationFieldEmail, setValidationFieldEmail] = useState(false);
   const [userId, setUserId] = useState('');
 
-  const [counterMovie, setCounterMovies] = useState('')
   const [search, setSearch] = useState(localSearch || '');
-  const [searchSave, setSearchSave] = useState(localSearchSave || '');
+  const [searchSave, setSearchSave] = useState('');
 
   const [errorMessageName, setErrorMessageName] = useState('');
   const [errorMessageEmail, setErrorMessageEmail] = useState('');
   const [errorMessagePassword, setErrorMessagePassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('')
   const [errorMessageForm, serErrorMessageForm] = useState(false);
+  const [successfulUpdate, setSuccessfulUpdate] = useState(false);
   const nameUser = useInput('', { isEmpty: true, minLength: 2 });
   const emailUser = useInput('', { isEmpty: true, minLength: 0, isEmail: false });
   const nameUserProfile = useInput('', { isEmpty: true, minLength: 2 });
@@ -80,17 +80,15 @@ function App() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [counterMovie, loggedIn, token])
+  }, [loggedIn, token])
 
   useEffect(() => {
     setLocalFilterMovies(filterMovies);
     setLocalSearch(search);
-    setLocalSearchSave(searchSave);
     setLocalDuration(isDuration);
-    setLocalDurationSaveMovies(isDurationSaveMovies);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterMovies, search, searchSave, isDuration, isDurationSaveMovies]);
+  }, [filterMovies, search, isDuration]);
 
   useEffect(() => {
     if (token) {
@@ -108,7 +106,6 @@ function App() {
       moviesApi.getMovies().then(movie => {
         setMovies(movie);
         setPreloader(false);
-        setResultRequestServer('Нужно ввести ключевое слово');
       }).catch((err) => {
         setResultRequestServer('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
         console.log(err);
@@ -166,6 +163,8 @@ function App() {
     serErrorMessageForm(false);
     setSaveProfile(true);
     setErrorMessage('');
+    setDurationSaveMovies(false);
+    setSuccessfulUpdate(false);
   }, [location])
 
 
@@ -207,7 +206,7 @@ function App() {
         return movie.nameRU.toLowerCase().includes(searchSave.toLowerCase()) || movie.nameEN.toLowerCase().includes(searchSave.toLowerCase());
       })
     );
-    setSearchingResults(true);
+    setSearchingSaveResults(true);
   }
 
   function handleLoginIn() {
@@ -215,7 +214,11 @@ function App() {
   };
 
   function handleTransitionMovies() {
-    navigate('/movies');
+    if (location.pathname !== '/movies') {
+      navigate(location.pathname);
+    } else {
+      navigate('/movies')
+    }
   }
 
   function handleRegister(form) {
@@ -240,7 +243,7 @@ function App() {
     mainApi.authorize(form).then((form) => {
       if (form) {
         handleLoginIn();
-        handleTransitionMovies();
+        navigate('/movies');
       }
     })
       .catch((err) => {
@@ -252,7 +255,9 @@ function App() {
   function handleEditProfile(form) {
     mainApi.editProfiles(form).then((item) => {
       serErrorMessageForm(false);
-      setSaveProfile(true)
+      setSaveProfile(true);
+      setCurrentUser(item);
+      setSuccessfulUpdate(true);
     })
       .catch((err) => {
         console.log(err);
@@ -278,7 +283,8 @@ function App() {
       nameRU: movie?.nameRU,
       nameEN: movie?.nameEN
     }).then((movie) => {
-      setCounterMovies(movie)
+      setFilterSaveMovies(filterSaveMovies.concat(movie));
+      setSaveMovies(saveMovies.concat(movie));
     }).catch((err) => {
       console.log(err);
     })
@@ -286,7 +292,8 @@ function App() {
 
   function handleDeleteMovies(movieId) {
     mainApi.deleteMovies(movieId).then((movie) => {
-      setCounterMovies(movie)
+      setSaveMovies(saveMovies.filter((i) => i._id !== movie._id));
+      setFilterSaveMovies(filterSaveMovies.filter((i) => i._id !== movie._id));
     }).catch((err) => {
       console.log(err);
     })
@@ -295,15 +302,14 @@ function App() {
   function handleSignOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('movies');
-    localStorage.removeItem('searchSave');
     localStorage.removeItem('search');
     localStorage.removeItem('duration');
-    localStorage.removeItem('durationSave');
     setSearch('');
     setSearchSave('');
     setFilterSaveMovies([]);
     setFilterMovies([]);
     setSearchingResults(false);
+    setSearchingSaveResults(false)
     navigate('/');
     setLoggedIn(false);
     setValidationFieldEmail(true);
@@ -338,35 +344,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
-        <Route path='/404' element={<Error navigate={navigate} />} />
-        <Route path='/signin' element={<Login
-          onLogin={handleLogin}
-          errorMessageEmail={errorMessageEmail}
-          errorMessagePassword={errorMessagePassword}
-          emailUser={emailUser}
-          passwordUser={passwordUser}
-          onChangeEmail={handleChangeEmail}
-          onChangePassword={handleChangePassword}
-          validationField={validationField}
-          validationFieldEmail={validationFieldEmail}
-          errorMessage={errorMessage}
-        />} />
-
-        <Route path='/signup' element={<Register
-          onRegister={handleRegister}
-          errorMessageName={errorMessageName}
-          errorMessageEmail={errorMessageEmail}
-          errorMessagePassword={errorMessagePassword}
-          errorMessage={errorMessage}
-          nameUser={nameUser}
-          emailUser={emailUser}
-          passwordUser={passwordUser}
-          onChangeName={handleChangeName}
-          onChangeEmail={handleChangeEmail}
-          onChangePassword={handleChangePassword}
-          validationField={validationField}
-          validationFieldEmail={validationFieldEmail} />} />
-
+        <Route path='*' element={<Error navigate={navigate} />} />
         <Route path='/' element={
 
           <>
@@ -402,9 +380,37 @@ function App() {
             saveMovies={saveMovies}
             preloader={preloader}
             resultRequestServer={resultRequestServer}
+            onDeleteMovies={handleDeleteMovies}
           />
           <Footer />
         </ProtectedRoute>} />
+        <Route path='/signin' element={<Login
+          onLogin={handleLogin}
+          errorMessageEmail={errorMessageEmail}
+          errorMessagePassword={errorMessagePassword}
+          emailUser={emailUser}
+          passwordUser={passwordUser}
+          onChangeEmail={handleChangeEmail}
+          onChangePassword={handleChangePassword}
+          validationField={validationField}
+          validationFieldEmail={validationFieldEmail}
+          errorMessage={errorMessage}
+        />} />
+
+        <Route path='/signup' element={<Register
+          onRegister={handleRegister}
+          errorMessageName={errorMessageName}
+          errorMessageEmail={errorMessageEmail}
+          errorMessagePassword={errorMessagePassword}
+          errorMessage={errorMessage}
+          nameUser={nameUser}
+          emailUser={emailUser}
+          passwordUser={passwordUser}
+          onChangeName={handleChangeName}
+          onChangeEmail={handleChangeEmail}
+          onChangePassword={handleChangePassword}
+          validationField={validationField}
+          validationFieldEmail={validationFieldEmail} />} />
 
         <Route path='/saved-movies' element={<ProtectedRoute loggedIn={loggedIn}>
           <Header
@@ -420,11 +426,11 @@ function App() {
             userId={userId}
             onDeleteMovies={handleDeleteMovies}
             moviesButton={filterSaveMoviesSearch}
-            searchingResults={searchingResults}
+            searchingResults={searchingSaveResults}
             onDuration={setDurationSaveMovies}
             duration={isDurationSaveMovies}
             onSearch={setSearchSave}
-            onSearchingResults={setSearchingResults}
+            onSearchingResults={setSearchingSaveResults}
             onFilterMovies={setFilterSaveMovies} />
           <Footer />
         </ProtectedRoute>} />
@@ -457,6 +463,9 @@ function App() {
               setNameGreeting={setNameGreeting}
               setEmail={setEmail}
               email={email}
+              currentUser={currentUser}
+              successfulUpdate={successfulUpdate}
+              onSuccessfulUpdate={setSuccessfulUpdate}
             />
           </ProtectedRoute>} />
       </Routes>

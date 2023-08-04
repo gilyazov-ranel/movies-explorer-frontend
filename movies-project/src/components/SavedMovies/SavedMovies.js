@@ -35,7 +35,6 @@ function SavedMovies({
                 userId={userId}
                 saveMovies={filterSaveMovies}
                 onDeleteMovies={onDeleteMovies}
-                search={search}
                 searchingResults={searchingResults}
             />
         </main>

@@ -1,16 +1,18 @@
 import './MoviesCard.css';
+import {CONSTANT} from '../../../config/constant'
+
 function MoviesCard({
     movie,
     onDeleteMovies
 }) {
     function durationMovie(duration) {
-        const hour = Math.floor(duration / 60);
-        const minute = duration % 60;
+        const hour = Math.floor(duration / CONSTANT.TIME);
+        const minute = duration % CONSTANT.TIME;
         return `${hour} ч ${minute} м`
     }
 
     function deleteMovies(movieId) {
-        onDeleteMovies(movieId)
+        onDeleteMovies(movieId);
     }
 
     return (

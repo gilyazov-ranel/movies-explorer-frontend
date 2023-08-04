@@ -17,7 +17,8 @@ function Movies({
     onCreateMovies,
     saveMovies,
     preloader,
-    resultRequestServer
+    resultRequestServer,
+    onDeleteMovies
 }) {
 
     return (
@@ -32,15 +33,16 @@ function Movies({
                 search={search}
                 chekboxActivion={search}
             />
-                    <MoviesCardList
-                        movies={movies}
-                        search={search}
-                        searchingResults={searchingResults}
-                        onCreateMovies={onCreateMovies}
-                        saveMovies={saveMovies}
-                        resultRequestServer={resultRequestServer}
-                        preloader={preloader}
-                    />
+            <MoviesCardList
+                movies={movies}
+                search={search}
+                searchingResults={searchingResults}
+                onCreateMovies={onCreateMovies}
+                saveMovies={saveMovies}
+                resultRequestServer={resultRequestServer}
+                preloader={preloader}
+                onDeleteMovies={onDeleteMovies}
+            />
 
         </main>
 

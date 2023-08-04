@@ -1,20 +1,26 @@
 import './MoviesCard.css';
+import {CONSTANT} from '../../../config/constant'
 
 function MoviesCard({
     movie,
     onCreateMovies,
-    saveButton
-
+    saveButton,
+    onDeleteMovies,
+    saveMovieId
 }) {
 
     function durationMovie(duration) {
-        const hour = Math.floor(duration / 60);
-        const minute = duration % 60;
+        const hour = Math.floor(duration / CONSTANT.TIME);
+        const minute = duration % CONSTANT.TIME;
         return `${hour} ч ${minute} м`
     }
 
     function saveMovie(movie) {
-        onCreateMovies(movie)
+        if (!saveButton) {
+            onCreateMovies(movie);
+        } else {
+            onDeleteMovies(saveMovieId[0]?._id);
+        }
     }
 
     return (
@@ -22,11 +28,11 @@ function MoviesCard({
             <h2 className='movie__name'>
                 {movie.nameRU}
             </h2>
-            <button type='button' className={ saveButton ?
+            <button type='button' className={saveButton ?
                 'movie__save-active' : 'movie__save'
             }
-            onClick={() => saveMovie(movie)}
-            disabled={saveButton}/>
+                onClick={() => saveMovie(movie) }
+            />
             <p className='movie__time'>
                 {durationMovie(movie.duration)}
             </p>

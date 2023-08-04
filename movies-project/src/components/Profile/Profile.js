@@ -18,7 +18,10 @@ function Profile({
     setNameGreeting,
     setEmail,
     email,
-    validationFieldEmail
+    validationFieldEmail,
+    currentUser,
+    successfulUpdate,
+    onSuccessfulUpdate
 }
 ) {
 
@@ -26,6 +29,7 @@ function Profile({
         if (isSaveProfile) {
             onSaveProfile(!isSaveProfile)
         }
+        onSuccessfulUpdate(false);
     }
 
     function handleSubmit(e) {
@@ -88,7 +92,7 @@ function Profile({
                     {(validationField || validationFieldEmail) && 'Что-то не так...'}
                 </span>
                 <p className='profile__error'>
-                    {errorMessageForm && 'При обновлении профиля произошла ошибка.'}
+                    {errorMessageForm ? 'При обновлении профиля произошла ошибка.' : successfulUpdate ? 'Вы успешно обновили данные в профиле' : ''}
                 </p>
                 {
                     isSaveProfile ? <>
@@ -99,13 +103,22 @@ function Profile({
                             Выйти из аккаунта
                         </button>
                     </> :
-                        <button type='submit'
+                    <>
+                    <p className='profile__error'>
+                            {(currentUser.user?.name === name && currentUser.user?.email === email) ?
+                            'Данные на сервере совпадают c полями Имя и Email' :
+                            currentUser.user?.email === email ?
+                            'Данные на сервере совпадают c полем Email' :
+                            currentUser.user?.name === name ?
+                            'Данные на сервере совпадают c полем Имя' :
+                            ''}
+                        </p><button type='submit'
                             className='profile__save'
-                            disabled={validationField || validationFieldEmail}
+                            disabled={currentUser.user?.name === name || currentUser.user?.email === email}
                             onClick={handleSubmit}
                         >
-                            Сохранить
-                        </button>
+                                Сохранить
+                            </button></>
                 }
             </form>
 
