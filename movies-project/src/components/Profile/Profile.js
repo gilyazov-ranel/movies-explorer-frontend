@@ -1,4 +1,6 @@
 import './Profile.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useContext } from 'react';
 
 function Profile({
     isBurgerMenu,
@@ -19,11 +21,14 @@ function Profile({
     setEmail,
     email,
     validationFieldEmail,
-    currentUser,
+    // currentUser,
     successfulUpdate,
     onSuccessfulUpdate
 }
 ) {
+
+    const currentUser = useContext(CurrentUserContext);
+
 
     function handleSaveProfile() {
         if (isSaveProfile) {
@@ -106,15 +111,12 @@ function Profile({
                     <>
                     <p className='profile__error'>
                             {(currentUser.user?.name === name && currentUser.user?.email === email) ?
-                            'Данные на сервере совпадают c полями Имя и Email' :
-                            currentUser.user?.email === email ?
-                            'Данные на сервере совпадают c полем Email' :
-                            currentUser.user?.name === name ?
-                            'Данные на сервере совпадают c полем Имя' :
+                            'Чтобы поменять данные измените имя или email' :
                             ''}
-                        </p><button type='submit'
+                        </p>
+                        <button type='submit'
                             className='profile__save'
-                            disabled={currentUser.user?.name === name || currentUser.user?.email === email}
+                            disabled={(currentUser.user?.name === name && currentUser.user?.email === email)}
                             onClick={handleSubmit}
                         >
                                 Сохранить

@@ -68,19 +68,18 @@ function App() {
   const [email, setEmail] = useState('');
 
   const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (token) {
+  //     mainApi.getMovies().then(items => {
+  //       setSaveMovies(items.movies);
+  //       setFilterSaveMovies(items.movies);
+  //     }).catch((err) => {
+  //       console.log(err);
+  //     })
+  //   }
 
-  useEffect(() => {
-    if (token) {
-      mainApi.getMovies().then(items => {
-        setSaveMovies(items.movies);
-        setFilterSaveMovies(items.movies);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn, token])
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [loggedIn, token])
 
   useEffect(() => {
     setLocalFilterMovies(filterMovies);
@@ -110,10 +109,16 @@ function App() {
         setResultRequestServer('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
         console.log(err);
       })
+      mainApi.getMovies().then(items => {
+        setSaveMovies(items.movies);
+        setFilterSaveMovies(items.movies);
+      }).catch((err) => {
+        console.log(err);
+      })
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+  }, [loggedIn]);
 
   useEffect(() => {
     if ((nameUser.isDirty && nameUser.isEmpty) ||
@@ -165,8 +170,8 @@ function App() {
     setErrorMessage('');
     setDurationSaveMovies(false);
     setSuccessfulUpdate(false);
-  }, [location])
 
+  }, [location])
 
   function handleOpenBurgerMenu() {
     setBurgerMenu(true);
@@ -214,12 +219,12 @@ function App() {
   };
 
   function handleTransitionMovies() {
-    if (location.pathname !== '/movies') {
+    if (['/saved-movies', '/movies', '/', '/profile', '/signin', '/signup'].includes(location.pathname)) {
       navigate(location.pathname);
-    } else {
-      navigate('/movies')
     }
+
   }
+
 
   function handleRegister(form) {
     const password = form.password;
@@ -344,7 +349,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
-        <Route path='*' element={<Error navigate={navigate} />} />
+        <Route path='*' element={<Error navigate={navigate} location={location}  loggedIn={loggedIn}/>} />
         <Route path='/' element={
 
           <>
@@ -384,7 +389,7 @@ function App() {
           />
           <Footer />
         </ProtectedRoute>} />
-        <Route path='/signin' element={<Login
+        <Route path={loggedIn ? '' : '/signin'} element={<Login
           onLogin={handleLogin}
           errorMessageEmail={errorMessageEmail}
           errorMessagePassword={errorMessagePassword}
@@ -397,7 +402,7 @@ function App() {
           errorMessage={errorMessage}
         />} />
 
-        <Route path='/signup' element={<Register
+        <Route path={loggedIn ? '' : '/signup'} element={<Register
           onRegister={handleRegister}
           errorMessageName={errorMessageName}
           errorMessageEmail={errorMessageEmail}
@@ -463,7 +468,6 @@ function App() {
               setNameGreeting={setNameGreeting}
               setEmail={setEmail}
               email={email}
-              currentUser={currentUser}
               successfulUpdate={successfulUpdate}
               onSuccessfulUpdate={setSuccessfulUpdate}
             />
