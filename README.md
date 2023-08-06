@@ -1,5 +1,23 @@
+# Дипломный Проект на курсе веб-разработчика Яндекс.Практикума: Фильмы
+
+### Обзор
+* Что применено
+* Ссылка на макет
+* Что еще можно улучшить
+
+**Что применено**
+
+В первой части дипломного проекта применено:
+1. Адаптивная верстка, cвестано для 4 разрешений:
+  * 1280px;
+  * 1024px;
+  * 768px;
+  * 320px;
+2. React JSX;
+3. Flexbox;
+4. CSS Grid Layout.
+
+
+**Ссылка на макет**
+
 [Макет дипломного проекта](https://drive.google.com/drive/folders/1o7nQRG3AH1Ra5nlqIA252gTW-QFuFa1N?usp=drive_link)
-
-[Ссылка на проект](https://project.movies.nomoreparties.co/)
-
-[Ссылка на pull requests](https://github.com/gilyazov-ranel/movies-explorer-frontend/pull/2)
