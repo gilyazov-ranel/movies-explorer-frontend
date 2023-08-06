@@ -12,3 +12,8 @@
 .header__movie:hover {
     opacity: 0.699999988079071;
 }
+
+.header__movie.active {
+    padding-bottom: 7px;
+    border-bottom: 2px solid rgba(255, 255, 255, 1);
+  }

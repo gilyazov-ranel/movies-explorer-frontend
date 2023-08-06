@@ -3,10 +3,13 @@
     padding: 0;
     margin-left: 14px;
     margin-top: 2px;
-    max-width: 280px;
+    max-width: 300px;
     min-height: 18px;
     font-size: 15px;
     font-weight: 500;
     line-height: normal;
     margin-right: 26px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

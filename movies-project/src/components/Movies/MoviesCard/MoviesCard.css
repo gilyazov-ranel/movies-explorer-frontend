@@ -3,5 +3,6 @@
 @import url(../../../blocks/movie/__time/movie__time.css);
 @import url(../../../blocks/movie/__save/movie__save.css);
 @import url(../../../blocks/movie/__image/movie__image.css);
+@import url(../../../blocks/movie/__save-active/movie__save-active.css);
 
 

@@ -16,7 +16,12 @@
 }
 
 .data__button:hover {
-    opacity: 0.8;
+    opacity: .8;
+}
+
+.data__button:disabled {
+    opacity: .5;
+    cursor: auto;
 }
 
 @media (max-width: 450px) {

@@ -18,6 +18,12 @@
     opacity: 0.8;
 }
 
+.profile__edit:disabled {
+    opacity: 1;
+    color: #C2C2C2;
+    cursor: auto;
+}
+
 @media (max-width: 900px) {
     .profile__edit {
         margin-top: 197px;

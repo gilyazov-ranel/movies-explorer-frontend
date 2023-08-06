@@ -1,26 +1,69 @@
 import './Profile.css';
-import { useState } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useContext } from 'react';
 
 function Profile({
-    isBurgerMenu
+    isBurgerMenu,
+    onSignOut,
+    onEditProfile,
+    nameUser,
+    emailUser,
+    onChangeName,
+    onChangeEmail,
+    validationField,
+    errorMessageForm,
+    onSaveProfile,
+    isSaveProfile,
+    name,
+    setName,
+    nameGreeting,
+    setNameGreeting,
+    setEmail,
+    email,
+    validationFieldEmail,
+    // currentUser,
+    successfulUpdate,
+    onSuccessfulUpdate
 }
 ) {
-    const [isSaveProfile, setSaveProfile] = useState(true);
+
+    const currentUser = useContext(CurrentUserContext);
+
 
     function handleSaveProfile() {
         if (isSaveProfile) {
-            setSaveProfile(false)
-        } else {
-            setSaveProfile(true)
+            onSaveProfile(!isSaveProfile)
         }
+        onSuccessfulUpdate(false);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        onEditProfile({
+            name: name,
+            email: email,
+        })
+        setNameGreeting(name);
+    }
+
+    function handleChangeName(e) {
+        setName(e.target.value);
+        nameUser.onFocus(e);
+    }
+
+    function handleChangeEmail(e) {
+        setEmail(e.target.value);
+        emailUser.onFocus(e);
     }
 
     return (
         <main className={'profile ' + (isBurgerMenu ? 'opacity' : '')}>
             <h1 className='profile__name'>
-                Привет, Александр!
+                Привет, {nameGreeting ?? ''}!
             </h1>
-            <form className='profile__form'>
+            <form
+                className='profile__form'
+            >
 
                 <label className='profile__title'>
                     Имя
@@ -28,10 +71,13 @@ function Profile({
                 <input
                     className='profile__input'
                     type='text'
-                    defaultValue='Александр'
+                    value={name ?? ''}
                     required
-                    disabled={isSaveProfile}
+                    // disabled={!isSaveProfile}
                     placeholder='Имя'
+                    onChange={handleChangeName}
+                    onInput={onChangeName}
+                    minLength='2'
                 />
                 <label className='profile__title'>
                     E-mail
@@ -39,25 +85,45 @@ function Profile({
                 <input
                     className='profile__input'
                     type='email'
-                    defaultValue='spasibo_z@_podskazki.ru'
+                    value={email ?? ''}
                     required
-                    disabled={isSaveProfile}
+                    // disabled={!isSaveProfile}
                     placeholder='E-mail'
+                    onChange={handleChangeEmail}
+                    onInput={onChangeEmail}
                 />
+
+                <span className={`profile__input-error`}>
+                    {(validationField || validationFieldEmail) && 'Что-то не так...'}
+                </span>
+                <p className='profile__error'>
+                    {errorMessageForm ? 'При обновлении профиля произошла ошибка.' : successfulUpdate ? 'Вы успешно обновили данные в профиле' : ''}
+                </p>
                 {
                     isSaveProfile ? <>
-                        <button type='button' className='profile__edit' onClick={handleSaveProfile} >
+                        <button type='button' className='profile__edit' onClick={handleSaveProfile} disabled={validationField || validationFieldEmail}>
                             Редактировать
                         </button>
-                        <a className='profile__exit' href='/'>
+                        <button className='profile__exit' to='/' onClick={onSignOut} >
                             Выйти из аккаунта
-                        </a>
-                    </> : <button type='submit' className='profile__save' onClick={handleSaveProfile}>
-                        Сохранить
-                    </button>
-
+                        </button>
+                    </> :
+                    <>
+                    <p className='profile__error'>
+                            {(currentUser.user?.name === name && currentUser.user?.email === email) ?
+                            'Чтобы поменять данные измените имя или email' :
+                            ''}
+                        </p>
+                        <button type='submit'
+                            className='profile__save'
+                            disabled={(currentUser.user?.name === name && currentUser.user?.email === email)}
+                            onClick={handleSubmit}
+                        >
+                                Сохранить
+                            </button></>
                 }
             </form>
+
         </main>
 
     )
